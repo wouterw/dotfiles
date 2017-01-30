@@ -1,0 +1,10 @@
+log
+tags
+tmp
+.git/
+vendor
+doc
+coverage
+public/assets
+*.sql
+node_modules

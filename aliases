@@ -1,0 +1,20 @@
+# Unix
+alias ll="ls -AlFh"
+alias ln="ln -v"
+alias mkdir="mkdir -p"
+alias e="$EDITOR"
+alias v="$VISUAL"
+
+alias ...='../..'
+
+# `ls` directories only.
+alias lsd='ls -l | grep "^d"'
+
+# `cat` w/ colors (requires `gem install rouge`).
+alias c='rougify highlight --formatter-opts theme=github'
+
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
