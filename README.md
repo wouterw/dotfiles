@@ -23,10 +23,6 @@ rcup
 ```
 
 ```
-curl https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS > $HOME/.dircolors
-```
-
-```
 ln -sf "$(brew --prefix)/share/git-core/contrib/diff-highlight/diff-highlight" ~/.bin/diff-highlight
 ```
 
