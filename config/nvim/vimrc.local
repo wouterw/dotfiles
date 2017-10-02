@@ -84,30 +84,32 @@ au BufRead,BufNewFile *.{js,jsx} set filetype=javascript syntax=javascript.jsx
 " CocoaPods
 au BufRead,BufNewFile Podfile,*.podspec set filetype=ruby
 
-" Make Prettier power the gq command for automatic formatting
-autocmd FileType javascript set formatprg=prettier\ --stdin
-autocmd BufWritePre *.js :normal gggqG
+" Make `prettier` power the gq command for automatic formatting
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote
+
+" Run `prettier` when `.js` files are saved
+" autocmd BufWritePre *.js :normal gggqG
+
+" Same as above but try restoring cursor position after formatting
+" autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
+
+" neoformat
+autocmd BufWritePre *.js,*.json Neoformat
+
+" Use formatprg when available
+let g:neoformat_try_formatprg = 1
 
 " vim-jsx
 let g:jsx_ext_required = 0
-
-" ctrlp
-if executable('rg')
-  let g:ctrlp_user_command = 'rg --files %s'
-  let g:ctrlp_use_caching = 0
-endif
-
-" grep
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
 
 " neomake
 autocmd! BufWritePost * Neomake
 
 hi neomakeErrorMsg ctermbg=0 ctermfg=1
 hi neomakeWarningMsg ctermbg=0 ctermfg=3
+
+let g:neomake_javascript_enabled_makers = ['flow', 'eslint']
+let g:neomake_jsx_enabled_makers = ['flow', 'eslint']
 
 " Look for local eslint and if not use globally installed one
 let g:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
@@ -119,28 +121,6 @@ let g:neomake_warning_sign = { 'text': '»', 'texthl': 'neomakeWarningMsg' }
 " airline
 let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
-
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.maxlinenr = '☰'
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.spell = 'Ꞩ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
 
 " neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
