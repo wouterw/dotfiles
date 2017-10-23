@@ -103,6 +103,10 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '»'
 let g:ale_sign_warning = '»'
 
+" Move between linting errors
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
+
 " gitgutter
 let g:gitgutter_sign_added = '∙'
 let g:gitgutter_sign_modified = '∙'
