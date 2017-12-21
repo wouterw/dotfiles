@@ -13,6 +13,9 @@ source "$(brew --prefix nvm)/nvm.sh"
 # load yarn if available
 export PATH="$HOME/.yarn/bin:$PATH"
 
+# load cargo
+[[ -f ~/.cargo/env ]] && source ~/.cargo/env
+
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
