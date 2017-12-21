@@ -66,6 +66,13 @@ map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 nmap <Leader>d :Dispatch 
 
+" You don't know what you're missing if you don't use this.
+nmap <C-e> :e#<CR>
+
+" Move between open buffers.
+" nmap <C-n> :bnext<CR>
+" nmap <C-p> :bprev<CR>
+
 " Embrace typos
 command! Q q
 command! W w
@@ -82,7 +89,10 @@ au BufRead,BufNewFile Podfile,*.podspec set filetype=ruby
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote
 
 " neoformat
-autocmd BufWritePre *.js,*.json Neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 " Use formatprg when available
 let g:neoformat_try_formatprg = 1
@@ -96,7 +106,8 @@ let g:javascript_plugin_flow = 1
 
 " airline
 let g:airline_theme='one'
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
+let g:airline_extensions = []
 let g:airline#extensions#ale#enabled = 1
 
 " ale
@@ -122,6 +133,11 @@ nmap <Leader>t :Files<CR>
 nmap <Leader>a :Rg<CR>
 
 let g:fzf_layout = { 'window': '10split enew' }
+
+" Hide fzf statusline
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " Customize fzf colors to match color scheme
 let g:fzf_colors =
