@@ -23,6 +23,7 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+  colorMoved = zebra
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = "red bold 52"
