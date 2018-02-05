@@ -17,9 +17,9 @@
   nevermind = !git reset --hard HEAD && git clean -d -f
 
 [color "diff"]
-  meta = yellow bold
-  commit = green bold
+  meta = yellow
   frag = magenta bold
+  commit = yellow bold
   old = red bold
   new = green bold
   whitespace = red reverse
