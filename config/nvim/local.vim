@@ -86,13 +86,16 @@ command! CLEAN retab | TEOL
 au BufRead,BufNewFile Podfile,*.podspec set filetype=ruby
 
 " Make `prettier` power the gq command for automatic formatting
-autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --single-quote
+autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote
 
 " neoformat
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
+
+let g:neoformat_enabled_ruby = []
+let g:neoformat_enabled_javascript = ['prettier']
 
 " Use formatprg when available
 let g:neoformat_try_formatprg = 1
