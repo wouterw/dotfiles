@@ -88,34 +88,41 @@ au BufRead,BufNewFile Podfile,*.podspec set filetype=ruby
 " Make `prettier` power the gq command for automatic formatting
 autocmd FileType javascript setlocal formatprg=prettier\ --stdin\ --single-quote
 
-" neoformat
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-
-let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_javascript = ['prettier']
-
-" Use formatprg when available
-let g:neoformat_try_formatprg = 1
-
 " neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" nerdtree
+let NERDTreeMinimalUI = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeQuitOnOpen = 1
+
+" open nerdtree at location of current open file
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" nerdtree-sync
+let g:nerdtree_sync_cursorline = 1
 
 " vim-javascript
 let g:javascript_plugin_flow = 1
 
 " airline
-let g:airline_theme='one'
-" let g:airline_powerline_fonts = 1
+let g:airline_theme = 'one'
 let g:airline_extensions = []
 let g:airline#extensions#ale#enabled = 1
 
 " ale
+let g:ale_sign_column_always = 1
 let g:ale_sign_error = '»'
 let g:ale_sign_warning = '»'
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fixers = { 'javascript': ['prettier'] }
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
