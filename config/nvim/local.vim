@@ -3,11 +3,11 @@ set encoding=utf-8
 " Enable true colors
 set termguicolors
 
-" Color scheme
-colorscheme one
-
 " Background color
 set background=light
+
+" Color scheme
+colorscheme one
 
 " Relative line numbers
 set relativenumber
