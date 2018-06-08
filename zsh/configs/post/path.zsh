@@ -17,7 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 source "$(brew --prefix nvm)/nvm.sh"
 
 # load yarn if available
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # load cargo
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
