@@ -4,10 +4,11 @@ set encoding=utf-8
 set termguicolors
 
 " Background color
-set background=light
+set background=dark
 
 " Color scheme
-colorscheme one
+" colorscheme one
+colorscheme jellybeans
 
 " Relative line numbers
 set relativenumber
