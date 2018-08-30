@@ -70,6 +70,7 @@ if executable('rg')
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    " Bind \ (backward slash) to grep shortcut
     nnoremap \ :Ag<SPACE>
   endif
 endif

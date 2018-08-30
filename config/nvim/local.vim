@@ -42,11 +42,7 @@ nmap k gk
 nmap j gj
 
 " Bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" Bind \ (backward slash) to grep shortcut
-" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-" nnoremap \ :Ag<SPACE>
+nnoremap K :Ag <C-R><C-W><CR>
 
 " Complete terms from all buffers
 set complete=.,w,b,u,t,i
@@ -143,8 +139,6 @@ nmap <Leader>r :Tags<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>a :Rg<CR>
 
-let g:fzf_layout = { 'window': '10split enew' }
-
 " Hide fzf statusline
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -171,7 +165,4 @@ let g:fzf_colors =
 "   :Rg! - Start fzf in fullscreen and display the preview window above
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  \   'rg --column --line-number --no-heading --smart-case '.shellescape(<q-args>), 1, <bang>0)
