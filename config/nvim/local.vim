@@ -7,7 +7,6 @@ set termguicolors
 set background=dark
 
 " Color scheme
-" colorscheme one
 colorscheme jellybeans
 
 " Relative line numbers
