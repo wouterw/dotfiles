@@ -25,3 +25,5 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[protocol]
+  version = 2
