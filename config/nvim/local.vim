@@ -60,7 +60,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-t> <esc>:tabnew<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
-nmap <Leader>d :Dispatch 
+nmap <Leader>d :Dispatch
 
 " You don't know what you're missing if you don't use this.
 nmap <C-e> :e#<CR>
@@ -118,7 +118,13 @@ let g:ale_fix_on_save = 1
 
 let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_fixers = { 'javascript': ['prettier'] }
+let g:ale_fixers = {
+\   '*': ['trim_whitespace'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\   'scss': ['prettier'],
+\   'elixir': ['mix_format']
+\ }
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
