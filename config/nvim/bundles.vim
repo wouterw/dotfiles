@@ -10,6 +10,7 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree'
