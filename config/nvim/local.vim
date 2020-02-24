@@ -33,6 +33,10 @@ set scrolloff=5
 " Live preview substitute (neovim)
 set inccommand=split
 
+set wildoptions=pum
+set pumblend=20
+set winblend=20
+
 " Don't add the comment prefix when I hit enter or o/O on a comment line.
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -97,13 +101,16 @@ let NERDTreeQuitOnOpen = 1
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " nerdtree-sync
 let g:nerdtree_sync_cursorline = 1
 
 " vim-javascript
 let g:javascript_plugin_flow = 1
+
+" vim-markdown
+let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
 " airline
 let g:airline_theme = 'one'
