@@ -156,6 +156,9 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
+" Open fzf in popup
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
 " Customize fzf colors to match color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
