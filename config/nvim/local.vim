@@ -7,7 +7,8 @@ set termguicolors
 set background=dark
 
 " Color scheme
-colorscheme jellybeans
+" colorscheme jellybeans
+colorscheme lucius
 
 " Relative line numbers
 set relativenumber
@@ -113,7 +114,7 @@ let g:javascript_plugin_flow = 1
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
 " airline
-let g:airline_theme = 'one'
+let g:airline_theme = 'lucius'
 let g:airline_extensions = []
 let g:airline#extensions#ale#enabled = 1
 
@@ -151,6 +152,9 @@ nmap <Leader>r :Tags<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>a :Rg<CR>
 
+" fzf: disable preview window
+let g:fzf_preview_window = ''
+
 " Hide fzf statusline
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -181,3 +185,7 @@ let g:fzf_colors =
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case '.shellescape(<q-args>), 1, <bang>0)
+
+" rubyfmt
+" source ~/Code/github/rubyfmt/rubyfmt.vim
+" let g:rubyfmt_path = '/Users/wouterw/Code/github/rubyfmt/target/release/rubyfmt-main'
