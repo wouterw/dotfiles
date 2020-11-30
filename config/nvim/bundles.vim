@@ -14,6 +14,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'nanotech/jellybeans.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'pechorin/any-jump.vim'
 Plug 'scrooloose/nerdtree'

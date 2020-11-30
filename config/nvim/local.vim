@@ -7,7 +7,6 @@ set termguicolors
 set background=dark
 
 " Color scheme
-" colorscheme jellybeans
 colorscheme lucius
 
 " Relative line numbers
@@ -124,11 +123,12 @@ let g:ale_sign_error = '»'
 let g:ale_sign_warning = '»'
 let g:ale_fix_on_save = 1
 
-let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
+let g:ale_linters = { 'javascript': ['eslint'] }
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
-\   'javascript': ['prettier'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
 \   'css': ['prettier'],
 \   'scss': ['prettier'],
 \   'elixir': ['mix_format']
@@ -155,15 +155,15 @@ nmap <Leader>a :Rg<CR>
 " fzf: disable preview window
 let g:fzf_preview_window = ''
 
-" Hide fzf statusline
+" fzf: Hide statusline
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-" Open fzf in popup
+" fzf: Open in popup
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-" Customize fzf colors to match color scheme
+" fzf: Customize colors to match color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -186,6 +186,11 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case '.shellescape(<q-args>), 1, <bang>0)
 
-" rubyfmt
-" source ~/Code/github/rubyfmt/rubyfmt.vim
-" let g:rubyfmt_path = '/Users/wouterw/Code/github/rubyfmt/target/release/rubyfmt-main'
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+  },
+}
+EOF
