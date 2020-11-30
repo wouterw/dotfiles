@@ -21,9 +21,3 @@ env RCRC=$HOME/.dotfiles/rcrc rcup
 ```
 rcup
 ```
-
-```
-ln -sf "$(brew --prefix)/share/git-core/contrib/diff-highlight/diff-highlight" ~/.bin/diff-highlight
-```
-
-
