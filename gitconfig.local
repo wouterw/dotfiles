@@ -5,17 +5,15 @@
   rbc = !git rebase --continue && git status
   rbi = !git fetch origin && git rebase -i origin/master
   l = !git log --graph --pretty=colored
-
   cleanup = !git remote prune origin && git gc && git clean -df && git stash clear
   wip = !git add -A && "git commit -m 'wip [ci skip]'"
   unwip = !test "`git log -n1 --pretty=format:%s`" = "wip" && git reset HEAD~1
-
   unstage = reset -q HEAD --
   discard = checkout --
   uncommit = reset --mixed HEAD~
   amend = commit --amend
   nevermind = !git reset --hard HEAD && git clean -d -f
-
+  patch = !git --no-pager diff --no-color
 [color "diff"]
   meta = yellow
   frag = magenta bold
@@ -59,5 +57,5 @@
 [help]
   autocorrect = 1
 [pager]
-  diff = diff-so-fancy | less --tabs=4 -RFX
-  show = diff-so-fancy | less --tabs=4 -RFX
+  diff = diff-so-fancy | less --tabs=4 -RFXS
+  show = diff-so-fancy | less --tabs=4 -RFXS

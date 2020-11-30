@@ -27,3 +27,5 @@
   path = ~/.gitconfig.local
 [protocol]
   version = 2
+[pull]
+  rebase = false
