@@ -200,4 +200,3 @@ EOF
 
 " coc: Solargraph (Ruby)
 let g:coc_global_extensions = ['coc-solargraph']
-
