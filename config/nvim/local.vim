@@ -7,7 +7,10 @@ set termguicolors
 set background=dark
 
 " Color scheme
-colorscheme lucius
+colorscheme base16-tomorrow-night
+
+" transparent bg
+hi Normal guibg=NONE ctermbg=NONE
 
 " Relative line numbers
 set relativenumber
@@ -194,3 +197,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+" coc: Solargraph (Ruby)
+let g:coc_global_extensions = ['coc-solargraph']
+

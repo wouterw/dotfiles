@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 Plug 'albertorestifo/github.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-run-interactive'
 Plug 'janko-m/vim-test'
 Plug 'jonathanfilip/vim-lucius'
@@ -14,7 +15,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'nanotech/jellybeans.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'pechorin/any-jump.vim'
 Plug 'scrooloose/nerdtree'
