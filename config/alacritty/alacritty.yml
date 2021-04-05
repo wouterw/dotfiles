@@ -1,7 +1,7 @@
 window:
   padding:
-    x: 3
-    y: 3
+    x: 5
+    y: 5
   dynamic_padding: true
   decorations: none
 
@@ -11,18 +11,18 @@ scrolling:
 
 font:
   normal:
-    family: JetBrains Mono
+    family: PragmataPro Mono Liga
     style: Regular
   bold:
-    family: JetBrains Mono
+    family: PragmataPro Mono Liga
     style: Bold
   italic:
-    family: JetBrains Mono
+    family: PragmataPro Mono Liga
     style: Italic
   bold_italic:
-    family: JetBrains Mono
+    family: PragmataPro Mono Liga
     style: Bold Italic
-  size: 12.0
+  size: 14.0
   use_thin_strokes: true
 
 # LuciusDark
