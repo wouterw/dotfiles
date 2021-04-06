@@ -103,12 +103,6 @@ let NERDTreeQuitOnOpen = 1
 " open nerdtree at location of current open file
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
-" close vim if the only window left open is a NERDTree
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" nerdtree-sync
-let g:nerdtree_sync_cursorline = 1
-
 " vim-javascript
 let g:javascript_plugin_flow = 1
 
@@ -116,9 +110,7 @@ let g:javascript_plugin_flow = 1
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
 " airline
-let g:airline_theme = 'lucius'
-let g:airline_extensions = []
-let g:airline#extensions#ale#enabled = 1
+let g:airline_theme = 'base16_tomorrow'
 
 " ale
 let g:ale_sign_column_always = 1
