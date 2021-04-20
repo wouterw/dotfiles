@@ -110,7 +110,7 @@ let g:javascript_plugin_flow = 1
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
 " airline
-let g:airline_theme = 'base16_tomorrow'
+let g:airline_theme = 'base16_tomorrow_night'
 
 " ale
 let g:ale_sign_column_always = 1
