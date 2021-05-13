@@ -18,4 +18,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # load vscode
 export PATH="$PATH:/Applications/Visual Studio Code - Insiders.app/Contents/Resources/app/bin"
 
+# load kubectl completions
+source <(kubectl completion zsh)
+
 export -U PATH
