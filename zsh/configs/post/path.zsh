@@ -2,19 +2,12 @@
 PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # load asdf
-if [ -d "$HOME/.asdf" ]; then
-  . $HOME/.asdf/asdf.sh
-  . $HOME/.asdf/completions/asdf.bash
-fi
+source "$(brew --prefix asdf)/asdf.sh"
 
 # load rbenv if available
 if command -v rbenv >/dev/null; then
   eval "$(rbenv init - --no-rehash)"
 fi
-
-# load nvm if available
-export NVM_DIR="$HOME/.nvm"
-source "$(brew --prefix nvm)/nvm.sh"
 
 # load yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
