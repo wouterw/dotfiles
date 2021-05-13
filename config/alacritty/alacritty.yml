@@ -11,21 +11,45 @@ scrolling:
 
 font:
   normal:
-    family: PragmataPro Mono Liga
+    family: PragmataPro Liga
     style: Regular
   bold:
-    family: PragmataPro Mono Liga
+    family: PragmataPro Liga
     style: Bold
   italic:
-    family: PragmataPro Mono Liga
+    family: PragmataPro Liga
     style: Italic
   bold_italic:
-    family: PragmataPro Mono Liga
+    family: PragmataPro Liga
     style: Bold Italic
-  size: 14.0
+  size: 12.0
   use_thin_strokes: true
 
-background_opacity: 0.95
+# Colors (GitHub Dark)
+# https://unpkg.com/@primer/primitives@4.3.0/dist/json/colors/dark.json
+# https://github.com/primer/github-vscode-theme/blob/master/src/theme.js
+colors:
+  primary:
+    background: '#010409'
+    foreground: '#8b949e'
+  normal:
+    black:      '#484f58'
+    white:      '#b1bac4'
+    red:        '#ff7b72'
+    green:      '#3fb950'
+    yellow:     '#d29922'
+    blue:       '#58a6ff'
+    magenta:    '#bc8cff'
+    cyan:       '#39c5cf'
+  bright:
+    black:      '#6e7681'
+    white:      '#f0f6fc'
+    red:        '#ffa198'
+    green:      '#56d364'
+    yellow:     '#e3b341'
+    blue:       '#79c0ff'
+    magenta:    '#d2a8ff'
+    cyan:       '#56d4dd'
 
 cursor:
   style: Block
