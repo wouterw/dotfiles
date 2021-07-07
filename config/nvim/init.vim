@@ -76,12 +76,18 @@ if executable('rg')
 endif
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+" set textwidth=80
+" set colorcolumn=+1
 
 " Numbers
 set number
 set numberwidth=5
+
+if has('patch-8.1.1564')
+  set signcolumn=number
+elseif exists('&signcolumn')
+  set signcolumn=yes
+end
 
 " Tab completion
 " will insert tab at beginning of line,

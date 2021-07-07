@@ -1,18 +1,11 @@
-if &compatible
-  set nocompatible
-end
-
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
-Plug 'albertorestifo/github.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'christoomey/vim-run-interactive'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'nanotech/jellybeans.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pbrisbin/vim-mkdir'
 Plug 'scrooloose/nerdtree'
@@ -26,8 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
+Plug 'windwp/nvim-autopairs'
+Plug 'wojciechkepka/vim-github-dark'
 
 call plug#end()
