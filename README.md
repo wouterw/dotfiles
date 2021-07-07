@@ -1,23 +1,30 @@
 dotfiles
 ========
 
-*A set of vim, zsh, git, and tmux configuration files.*
+*A set of `vim`, `zsh`, `git`, and `tmux` configuration files.*
 
 ## Usage
 
+Set `zsh` as your login shell:
+
+```sh
+chsh -s $(which zsh)
 ```
+
+Clone dotfiles repository:
+
+```sh
 git clone https://github.com/wouterw/dotfiles.git ~/.dotfiles
 ```
 
-```
-brew tap thoughtbot/formulae
+Install [rcm](https://github.com/thoughtbot/rcm):
+
+```sh
 brew install rcm
 ```
 
-```
-env RCRC=$HOME/.dotfiles/rcrc rcup
-```
+Install the dotfiles:
 
-```
-rcup
+```sh
+env RCRC=$HOME/.dotfiles/rcrc rcup
 ```
