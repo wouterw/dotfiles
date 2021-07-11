@@ -1,2 +1,2 @@
-EXCLUDES="itermcolors README.md .code-settings.json"
+EXCLUDES="README.md"
 DOTFILES_DIRS="$HOME/.dotfiles-local $HOME/.dotfiles"
