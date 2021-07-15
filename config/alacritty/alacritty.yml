@@ -25,31 +25,58 @@ font:
   size: 12.0
   use_thin_strokes: true
 
-# Colors (GitHub Dark)
+# GitHub Dark
 # https://unpkg.com/@primer/primitives@4.3.0/dist/json/colors/dark.json
 # https://github.com/primer/github-vscode-theme/blob/master/src/theme.js
 colors:
   primary:
-    background: '#010409'
-    foreground: '#8b949e'
+    background: "#010409"
+    foreground: "#b1bac4"
   normal:
-    black:      '#484f58'
-    white:      '#b1bac4'
-    red:        '#ff7b72'
-    green:      '#3fb950'
-    yellow:     '#d29922'
-    blue:       '#58a6ff'
-    magenta:    '#bc8cff'
-    cyan:       '#39c5cf'
+    black: "#484f58"
+    white: "#b1bac4"
+    red: "#ff7b72"
+    green: "#3fb950"
+    yellow: "#d29922"
+    blue: "#58a6ff"
+    magenta: "#bc8cff"
+    cyan: "#39c5cf"
   bright:
-    black:      '#6e7681'
-    white:      '#f0f6fc'
-    red:        '#ffa198'
-    green:      '#56d364'
-    yellow:     '#e3b341'
-    blue:       '#79c0ff'
-    magenta:    '#d2a8ff'
-    cyan:       '#56d4dd'
+    black: "#6e7681"
+    white: "#f0f6fc"
+    red: "#ffa198"
+    green: "#56d364"
+    yellow: "#e3b341"
+    blue: "#79c0ff"
+    magenta: "#d2a8ff"
+    cyan: "#56d4dd"
+
+# GitHub Light
+colors:
+  primary:
+    background: '0xffffff'
+    foreground: '0x586069'
+  normal:
+    black:   '0xCCCCCC'
+    red:     '0xd03d3d'
+    green:   '0x14ce14'
+    yellow:  '0x949800'
+    blue:    '0x0451a5'
+    magenta: '0xbc05bc'
+    cyan:    '0x0598BC'
+    white:   '0x586069'
+  bright:
+    black:   '0x666666'
+    red:     '0xcd3131'
+    green:   '0x14ce14'
+    yellow:  '0xb5ba00'
+    blue:    '0x0451a5'
+    magenta: '0xbc05bc'
+    cyan:    '0x0598BC'
+    white:   '0x586069'
+  indexed_colors:
+    - { index: 16, color: '0xd18616' }
+    - { index: 17, color: '0xcd3131' }
 
 cursor:
   style: Block
