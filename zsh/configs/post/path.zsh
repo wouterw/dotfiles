@@ -2,7 +2,7 @@
 PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # load asdf
-source "$(brew --prefix asdf)/asdf.sh"
+[[ -f "$(brew --prefix asdf)/asdf.sh" ]] && source "$(brew --prefix asdf)/asdf.sh"
 
 # load rbenv if available
 if command -v rbenv >/dev/null; then
