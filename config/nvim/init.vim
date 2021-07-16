@@ -238,31 +238,6 @@ let g:javascript_plugin_flow = 1
 " vim-markdown
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
-" airline
-" let g:airline_theme = 'ghdark'
-
-" ale
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '◦'
-let g:ale_sign_warning = '◦'
-let g:ale_fix_on_save = 1
-
-let g:ale_linters = { 'javascript': ['eslint'] }
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_fixers = {
-\   '*': ['trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'eslint'],
-\   'typescriptreact': ['prettier', 'eslint'],
-\   'css': ['prettier'],
-\   'scss': ['prettier'],
-\   'elixir': ['mix_format']
-\ }
-
-" Move between linting errors
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
-
 " fzf
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
@@ -379,9 +354,7 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-EOF
 
-lua <<EOF
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 EOF
@@ -437,18 +410,17 @@ require('gitsigns').setup()
 
 require('github-theme').setup {
   themeStyle = 'light',
+  hideInactiveStatusline = true,
 }
 
 require('lualine').setup {
   options = {
     theme = 'github',
-    section_separators = {"", ""},
-    component_separators = {"", ""},
-  }
+    section_separators = '',
+    component_separators = '',
+  },
 }
 EOF
-
-" let g:lightline = { 'colorscheme': 'ghdark' }
 
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
