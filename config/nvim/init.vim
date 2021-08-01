@@ -238,47 +238,6 @@ let g:javascript_plugin_flow = 1
 " vim-markdown
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
-" fzf
-set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
-nmap ; :Buffers<CR>
-nmap <Leader>r :Tags<CR>
-nmap <Leader>t :GFiles<CR>
-nmap <Leader>a :Rg<CR>
-
-" fzf: disable preview window
-let g:fzf_preview_window = ''
-
-" fzf: Hide statusline
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-" fzf: Open in popup
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
-" fzf: Customize colors to match color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" Augmenting Rg command using `fzf#vim#with_preview` function
-"   :Rg  - Start fzf with hidden preview window that can be enabled with "?" key
-"   :Rg! - Start fzf in fullscreen and display the preview window above
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case '.shellescape(<q-args>), 1, <bang>0)
-
 " Tree-sitter based syntax highlighting and identation
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -420,12 +379,28 @@ require('lualine').setup {
     component_separators = '',
   },
 }
+
+require('telescope').setup {
+  defaults = {
+    prompt_prefix = " ",
+    selection_caret = " ",
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.95,
+      height = 0.85,
+      horizontal = {
+        prompt_position = "top",
+      },
+    },
+  },
+}
 EOF
 
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
 
 let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache']
 let g:nvim_tree_gitignore = 1
@@ -468,6 +443,60 @@ let g:nvim_tree_icons = {
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
+
+lua <<EOF
+function prettier ()
+  return {
+    exe = "prettier",
+    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+    stdin = true
+  }
+end
+
+function rustfmt ()
+  return {
+    exe = "rustfmt",
+    args = {"--emit=stdout"},
+    stdin = true
+  }
+end
+
+function luafmt ()
+  return {
+    exe = "luafmt",
+    args = {"--indent-count", 2, "--stdin"},
+    stdin = true
+  }
+end
+
+function clangformat ()
+  return {
+    exe = "clang-format",
+    args = {"--assume-filename", vim.api.nvim_buf_get_name(0)},
+    stdin = true,
+    cwd = vim.fn.expand('%:p:h')
+  }
+end
+
+require('formatter').setup {
+  logging = false,
+  filetype = {
+    javascript = { prettier },
+    typescript = { prettier },
+    typescriptreact = { prettier },
+    rust = { rustfmt },
+    lua = { luafmt },
+    cpp = { clangformat }
+  }
+}
+
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.ts,*.tsx,*.js,*.jsx,*.rs,*.lua FormatWrite
+augroup END
+]], true)
+EOF
 
 " Local config
 if filereadable($HOME . "/.config/nvim/local.vim")
