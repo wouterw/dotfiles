@@ -1,16 +1,3 @@
-# Prefer US English and use UTF-8
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
-
-# https://github.com/zsh-users/zsh-syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# https://github.com/zsh-users/zsh-autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # fzf
 if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
   source /usr/local/opt/fzf/shell/key-bindings.zsh
