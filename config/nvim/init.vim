@@ -209,10 +209,6 @@ nmap <Leader>d :Dispatch
 " You don't know what you're missing if you don't use this.
 nmap <C-e> :e#<CR>
 
-" Move between open buffers.
-" nmap <C-n> :bnext<CR>
-" nmap <C-p> :bprev<CR>
-
 " Embrace typos
 command! Q q
 command! W w
@@ -497,6 +493,27 @@ augroup FormatAutogroup
 augroup END
 ]], true)
 EOF
+
+lua << EOF
+require("bufferline").setup {
+  options = {
+    numbers = "buffer_id",
+    number_style = "superscript",
+    indicator_icon = '▎',
+    buffer_close_icon = '',
+    modified_icon = '●',
+    close_icon = '',
+    left_trunc_marker = '',
+    right_trunc_marker = '',
+  }
+}
+EOF
+
+" Move between open buffers.
+" nmap <C-n> :bnext<CR>
+" nmap <C-p> :bprev<CR>
+nnoremap <silent>[b :BufferLineCycleNext<CR>
+nnoremap <silent>b] :BufferLineCyclePrev<CR>
 
 " Local config
 if filereadable($HOME . "/.config/nvim/local.vim")

@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'akinsho/nvim-bufferline.lua'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'hrsh7th/nvim-compe'
