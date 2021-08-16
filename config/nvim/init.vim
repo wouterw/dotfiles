@@ -380,14 +380,6 @@ require('telescope').setup {
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
-    layout_strategy = "horizontal",
-    layout_config = {
-      width = 0.95,
-      height = 0.85,
-      horizontal = {
-        prompt_position = "top",
-      },
-    },
   },
 }
 EOF
@@ -494,26 +486,11 @@ augroup END
 ]], true)
 EOF
 
-lua << EOF
-require("bufferline").setup {
-  options = {
-    numbers = "buffer_id",
-    number_style = "superscript",
-    indicator_icon = '▎',
-    buffer_close_icon = '',
-    modified_icon = '●',
-    close_icon = '',
-    left_trunc_marker = '',
-    right_trunc_marker = '',
-  }
-}
-EOF
-
 " Move between open buffers.
 " nmap <C-n> :bnext<CR>
 " nmap <C-p> :bprev<CR>
-nnoremap <silent>[b :BufferLineCycleNext<CR>
-nnoremap <silent>b] :BufferLineCyclePrev<CR>
+nnoremap <silent>[b :bnext<CR>
+nnoremap <silent>b] :bprev<CR>
 
 " Local config
 if filereadable($HOME . "/.config/nvim/local.vim")
