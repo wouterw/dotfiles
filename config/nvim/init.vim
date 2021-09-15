@@ -279,9 +279,9 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -295,7 +295,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -362,11 +362,7 @@ EOF
 
 lua <<EOF
 require('gitsigns').setup()
-
-require('github-theme').setup {
-  themeStyle = 'light',
-  hideInactiveStatusline = true,
-}
+require('spellsitter').setup()
 
 require('lualine').setup {
   options = {
@@ -376,15 +372,33 @@ require('lualine').setup {
   },
 }
 
+require('github-theme').setup {
+  theme_style = 'dark_default',
+  msg_area_style = 'italic',
+  hide_inactive_statusline = true,
+  dark_float = false,
+  dark_sidebar = false
+}
+
 require('telescope').setup {
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = false,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
 }
+
+require('telescope').load_extension('fzf')
 EOF
 
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>t <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -393,10 +407,13 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols(
 let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache']
 let g:nvim_tree_gitignore = 1
 let g:nvim_tree_follow = 1
+let g:nvim_tree_indent_markers = 0
+let g:nvim_tree_add_trailing = 1
+let g:nvim_tree_symlink_arrow = ' → '
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
-    \ 'files': 0,
+    \ 'files': 1,
     \ 'folder_arrows': 1,
     \ }
 
@@ -489,8 +506,8 @@ EOF
 " Move between open buffers.
 " nmap <C-n> :bnext<CR>
 " nmap <C-p> :bprev<CR>
-nnoremap <silent>[b :bnext<CR>
-nnoremap <silent>b] :bprev<CR>
+" nnoremap <silent>[b :bnext<CR>
+" nnoremap <silent>b] :bprev<CR>
 
 " Local config
 if filereadable($HOME . "/.config/nvim/local.vim")
