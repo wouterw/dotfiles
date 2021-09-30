@@ -404,20 +404,21 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
 
-let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache']
+let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.yarn']
 let g:nvim_tree_gitignore = 1
-let g:nvim_tree_follow = 1
-let g:nvim_tree_indent_markers = 0
-let g:nvim_tree_add_trailing = 1
+let g:nvim_tree_icon_padding = ''
 let g:nvim_tree_symlink_arrow = ' → '
+
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
-    \ 'files': 1,
+    \ 'files': 0,
     \ 'folder_arrows': 1,
     \ }
 
 let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'symlink': '',
     \ 'git': {
     \   'unstaged': "✗",
     \   'staged': "✓",
@@ -426,7 +427,7 @@ let g:nvim_tree_icons = {
     \   'untracked': "★",
     \   'deleted': "",
     \   'ignored': "◌"
-    \ },
+    \   },
     \ 'folder': {
     \   'arrow_open': "",
     \   'arrow_closed': "",
@@ -434,8 +435,8 @@ let g:nvim_tree_icons = {
     \   'open': "",
     \   'empty': "",
     \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
+    \   'symlink': "",
+    \   'symlink_open': "",
     \   },
     \   'lsp': {
     \     'hint': "",
@@ -444,6 +445,20 @@ let g:nvim_tree_icons = {
     \     'error': "",
     \   }
     \ }
+
+lua <<EOF
+require('nvim-tree').setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = false,
+  lsp_diagnostics     = true,
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+}
+EOF
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
