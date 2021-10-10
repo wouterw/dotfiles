@@ -438,12 +438,6 @@ let g:nvim_tree_icons = {
     \   'symlink': "",
     \   'symlink_open': "",
     \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
     \ }
 
 lua <<EOF
@@ -451,11 +445,19 @@ require('nvim-tree').setup {
   disable_netrw       = true,
   hijack_netrw        = true,
   open_on_setup       = false,
-  lsp_diagnostics     = true,
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
     ignore_list = {}
+  },
+  diagnostics = {
+    enable = true,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
   },
 }
 EOF
