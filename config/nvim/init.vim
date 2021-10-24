@@ -445,11 +445,6 @@ require('nvim-tree').setup {
   disable_netrw       = true,
   hijack_netrw        = true,
   open_on_setup       = false,
-  update_focused_file = {
-    enable      = true,
-    update_cwd  = false,
-    ignore_list = {}
-  },
   diagnostics = {
     enable = true,
     icons = {
@@ -458,6 +453,11 @@ require('nvim-tree').setup {
       warning = "",
       error = "",
     }
+  },
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = false,
+    ignore_list = {}
   },
 }
 EOF
