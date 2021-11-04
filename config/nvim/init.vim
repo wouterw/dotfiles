@@ -234,7 +234,7 @@ let g:javascript_plugin_flow = 1
 " vim-markdown
 let g:markdown_fenced_languages = ['ruby', 'bash=sh']
 
-" Tree-sitter based syntax highlighting and identation
+" Tree-sitter based syntax highlighting and indentation
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -383,7 +383,6 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
 
-let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.yarn']
 let g:nvim_tree_gitignore = 1
 let g:nvim_tree_icon_padding = ''
 let g:nvim_tree_symlink_arrow = ' → '
@@ -437,6 +436,10 @@ require('nvim-tree').setup {
     enable      = true,
     update_cwd  = false,
     ignore_list = {}
+  },
+  filters = {
+    dotfiles = false,
+    custom = { '.git', 'node_modules', '.cache', '.yarn' }
   },
 }
 EOF
