@@ -332,7 +332,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'spell' },
-    { name = 'buffer' },
+    { name = 'buffer', keyword_length = 5 },
   }),
   experimental = { native_menu = false, ghost_text = true }
 })
@@ -383,42 +383,38 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
 
-let g:nvim_tree_gitignore = 1
-let g:nvim_tree_icon_padding = ''
-let g:nvim_tree_symlink_arrow = ' → '
-
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 0,
-    \ 'folder_arrows': 1,
-    \ }
-
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \ }
-
+" nvim-tree configuration
+" https://github.com/kyazdani42/nvim-tree.lua
 lua <<EOF
+vim.g.nvim_tree_git_hl = 1
+vim.g.nvim_tree_gitignore = 1
+vim.g.nvim_tree_symlink_arrow = ' → '
+vim.g.nvim_tree_special_files = {}
+
+vim.g.nvim_tree_icons = {
+  default = "",
+  symlink = "",
+  git = {
+    unstaged = "✗",
+    staged = "✓",
+    unmerged = "",
+    renamed = "➜",
+    untracked = "★",
+    deleted = "",
+    ignored = "◌"
+  },
+  folder = {
+    arrow_open = "",
+    arrow_closed = "",
+    default = "",
+    open = "",
+    empty = "",
+    empty_open = "",
+    symlink = "",
+    symlink_open = "",
+  },
+}
+
 require('nvim-tree').setup {
   disable_netrw       = true,
   hijack_netrw        = true,
