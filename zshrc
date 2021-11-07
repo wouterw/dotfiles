@@ -41,6 +41,11 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
+# Set up Kitty shell integration
+if test -e "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then
+  source "/Applications/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh";
+fi
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
