@@ -309,9 +309,6 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
-
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
 EOF
 
 lua <<EOF
