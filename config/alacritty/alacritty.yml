@@ -16,16 +16,16 @@ scrolling:
 
 font:
   normal:
-    family: PragmataPro Liga
+    family: PragmataPro
     style: Regular
   bold:
-    family: PragmataPro Liga
+    family: PragmataPro
     style: Bold
   italic:
-    family: PragmataPro Liga
+    family: PragmataPro
     style: Italic
   bold_italic:
-    family: PragmataPro Liga
+    family: PragmataPro
     style: Bold Italic
   size: 12.0
   use_thin_strokes: true
