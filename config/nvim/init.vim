@@ -204,7 +204,6 @@ end
 map <C-t> <esc>:tabnew<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
-nmap <Leader>d :Dispatch
 
 " You don't know what you're missing if you don't use this.
 nmap <C-e> :e#<CR>
@@ -309,6 +308,57 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+local eslint = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintIgnoreExitCode = true,
+  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatStdin = true
+}
+
+nvim_lsp.tsserver.setup {
+  on_attach = function(client)
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
+    client.resolved_capabilities.document_formatting = false
+    set_lsp_config(client)
+  end
+}
+
+nvim_lsp.efm.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = true
+    client.resolved_capabilities.goto_definition = false
+    set_lsp_config(client)
+  end,
+  root_dir = function()
+    if not eslint_config_exists() then
+      return nil
+    end
+    return vim.fn.getcwd()
+  end,
+  settings = {
+    languages = {
+      javascript = {eslint},
+      javascriptreact = {eslint},
+      ["javascript.jsx"] = {eslint},
+      typescript = {eslint},
+      ["typescript.tsx"] = {eslint},
+      typescriptreact = {eslint}
+    }
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
+  },
+}
 EOF
 
 lua <<EOF
@@ -383,10 +433,7 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols(
 " nvim-tree configuration
 " https://github.com/kyazdani42/nvim-tree.lua
 lua <<EOF
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_gitignore = 1
 vim.g.nvim_tree_symlink_arrow = ' → '
-vim.g.nvim_tree_special_files = {}
 
 vim.g.nvim_tree_icons = {
   default = "",
@@ -433,6 +480,25 @@ require('nvim-tree').setup {
   filters = {
     dotfiles = false,
     custom = { '.git', 'node_modules', '.cache', '.yarn' }
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
+  view = {
+    width = 30,
+    height = 30,
+    hide_root_folder = false,
+    side = 'left',
+    auto_resize = false,
+    mappings = {
+      custom_only = false,
+      list = {}
+    },
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes"
   },
 }
 EOF
