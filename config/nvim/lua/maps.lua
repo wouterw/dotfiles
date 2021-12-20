@@ -9,8 +9,6 @@ map("n", "<C-[>", ":cprev<CR>", {noremap = true})
 map("n", "<C-\\>", ":clist<CR>", {noremap = true})
 
 -- Buffer
-map("n", "<Leader><Esc>", ":bd<CR>", {noremap = true})
-map("n", "<C-l>", ":%bd!<CR>", {noremap = true})
 map("n", "<Leader>]", ":bnext<CR>", {noremap = true})
 map("n", "<Leader>[", ":bprev<CR>", {noremap = true})
 

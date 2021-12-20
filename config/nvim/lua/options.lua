@@ -72,10 +72,9 @@ vim.o.writebackup = false -- This is recommended by coc
 
 -- whitespace characters
 vim.wo.list = true
-vim.opt.listchars = "tab:→ ,trail:•,extends:»,precedes:«"
--- set list listchars=tab:»·,trail:·,nbsp:·
+vim.opt.listchars = "tab:→ ,trail:•,nbsp:·,extends:»,precedes:«"
 
--- copy and paste with OS clipboard
+-- Copy and paste with OS clipboard
 vim.opt.clipboard = "unnamedplus"
 
 -- Error format
@@ -90,8 +89,10 @@ vim.bo.errorformat = [[
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- Auto write and read files
+-- Automatically :write before running commands
 vim.opt.autowrite = true
+
+-- Automatically update file unless buffer has unsaved changes
 vim.opt.autoread = true
 
 -- Set spellfile to location that is guaranteed to exist, can be symlinked to
@@ -108,5 +109,10 @@ vim.opt.autoread = true
 -- end
 
 -- Trim spaces at EOL and retab.
--- command! TEOL %s/\s\+$//
--- command! CLEAN retab | TEOL
+vim.cmd [[ command! TEOL %s/\s\+$// ]]
+vim.cmd [[ command! CLEAN retab | TEOL ]]
+
+-- Embrace typos
+vim.cmd [[ command! Q q ]]
+vim.cmd [[ command! W w ]]
+vim.cmd [[ command! Wq wq ]]

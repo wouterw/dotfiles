@@ -8,6 +8,14 @@ function prettier ()
   }
 end
 
+function elixirfmt ()
+  return {
+    exe = "mix format",
+    args = {},
+    stdin = true
+  }
+end
+
 function rustfmt ()
   return {
     exe = "rustfmt",
@@ -38,6 +46,7 @@ require("formatter").setup({
 		html = { prettier },
     rust = { rustfmt },
     lua = { luafmt },
+    elixir = { elixirfmt },
   }
 })
 
