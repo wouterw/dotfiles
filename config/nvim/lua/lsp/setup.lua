@@ -30,7 +30,41 @@ end
 lsp_installer.on_server_ready(function(server)
   local default_opts = opts
 
-  server:setup(opts)
+  local server_opts = {
+    ["efm"] = function()
+      default_opts = opts
+
+      local eslint = {
+        lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+        lintStdin = true,
+        lintFormats = {"%f:%l:%c: %m"},
+        lintIgnoreExitCode = true,
+        formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+        formatStdin = true
+      }
+
+      default_opts.settings = {
+        languages = {
+          javascript = {eslint},
+          javascriptreact = {eslint},
+          typescript = {eslint},
+          typescriptreact = {eslint}
+        }
+      }
+
+      default_opts.filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      }
+
+      return default_opts
+    end
+  }
+
+  -- We check to see if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts
+  server:setup(server_opts[server.name] and server_opts[server.name]() or opts)
 
   vim.cmd([[ do User LspAttachBuffers ]])
 end)
@@ -42,54 +76,3 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = ""})
 end
-
--- local eslint = {
---   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
---   lintStdin = true,
---   lintFormats = {"%f:%l:%c: %m"},
---   lintIgnoreExitCode = true,
---   formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
---   formatStdin = true
--- }
-
--- nvim_lsp.tsserver.setup {
---   on_attach = function(client)
---     if client.config.flags then
---       client.config.flags.allow_incremental_sync = true
---     end
---     client.resolved_capabilities.document_formatting = false
---     set_lsp_config(client)
---   end
--- }
-
--- nvim_lsp.efm.setup {
---   on_attach = function(client)
---     client.resolved_capabilities.document_formatting = true
---     client.resolved_capabilities.goto_definition = false
---     set_lsp_config(client)
---   end,
---   root_dir = function()
---     if not eslint_config_exists() then
---       return nil
---     end
---     return vim.fn.getcwd()
---   end,
---   settings = {
---     languages = {
---       javascript = {eslint},
---       javascriptreact = {eslint},
---       ["javascript.jsx"] = {eslint},
---       typescript = {eslint},
---       ["typescript.tsx"] = {eslint},
---       typescriptreact = {eslint}
---     }
---   },
---   filetypes = {
---     "javascript",
---     "javascriptreact",
---     "javascript.jsx",
---     "typescript",
---     "typescript.tsx",
---     "typescriptreact"
---   },
--- }
