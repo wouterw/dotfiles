@@ -38,7 +38,7 @@ map("n", "<Leader>fr", "<cmd>lua require('telescope.builtin').registers()<cr>", 
 map("n", "<Leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
 map("n", "<Leader>fm", "<cmd>lua require('telescope.builtin').man_pages()<cr>", opts)
 
-map("n", "<Leader>fs", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", opts)
+map("n", "<Leader>fs", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
 map("n", "<Leader>ca", "<cmd>lua require('config.telescope').lsp_code_actions()<cr>", opts)
 
 return M
