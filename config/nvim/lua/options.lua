@@ -61,7 +61,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.wo.cursorline = true -- Enable highlighting of the current line
-vim.wo.signcolumn = "number" -- Always show the signcolumn, otherwise it would shift the text each time
+vim.wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 
 vim.wo.scrolloff = 10
 vim.wo.sidescrolloff = 30
@@ -95,20 +95,10 @@ vim.opt.autowrite = true
 -- Automatically update file unless buffer has unsaved changes
 vim.opt.autoread = true
 
--- Set spellfile to location that is guaranteed to exist, can be symlinked to
--- Dropbox or kept in Git and managed outside of dotfiles using rcm.
--- set spellfile=$HOME/.vim-spell-en.utf-8.add
-
--- Always use vertical diffs
--- set diffopt+=vertical
-
 -- Allow undo history to persist after closing buffer
--- if has("persistent_undo")
---   set undodir=~/.vim/_undo
---   set undofile
--- end
+vim.opt.undofile = true
 
--- Trim spaces at EOL and retab.
+-- Trim spaces at EOL and retab
 vim.cmd [[ command! TEOL %s/\s\+$// ]]
 vim.cmd [[ command! CLEAN retab | TEOL ]]
 

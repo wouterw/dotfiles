@@ -15,7 +15,7 @@ M.lsp_code_actions = function()
 end
 
 local map = require("util").map
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 map("n", "<Leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 map("n", "<Leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)

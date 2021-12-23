@@ -1,8 +1,17 @@
 require("nvim-treesitter.configs").setup {
   ensure_installed = "maintained",
-  highlight = { enable = true, use_languagetree = true },
+  sync_install = false,
+  autopairs = {
+    enabled = true,
+  },
+  highlight = {
+    enable = true,
+  },
   indent = { enable = true },
-  context_commentstring = { enable = true },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
   incremental_selection = {
     enable = true,
     keymaps = {

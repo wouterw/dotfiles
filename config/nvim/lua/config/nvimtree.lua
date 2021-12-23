@@ -8,6 +8,13 @@ vim.g.nvim_tree_root_folder_modifier = ":p:~"
 
 vim.g.nvim_tree_symlink_arrow = ' ⤑  '
 
+vim.g.nvim_tree_show_icons = {
+  git = 1,
+  folders = 0,
+  files = 0,
+  folder_arrows = 1,
+}
+
 vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
@@ -48,6 +55,10 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = false,
     custom = { ".git", "node_modules", ".cache", ".yarn" }
+  },
+  trash = {
+    cmd = "trash",
+    require_confirm = true
   },
   update_focused_file = {
     enable = true
