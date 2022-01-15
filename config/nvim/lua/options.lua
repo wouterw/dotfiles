@@ -1,9 +1,6 @@
 -- Leader key
 vim.g.mapleader = " "
 
--- Spell Checker
-vim.cmd [[set spell]]
-
 -- quicker update
 vim.opt.updatetime = 500
 

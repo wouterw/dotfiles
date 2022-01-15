@@ -50,13 +50,6 @@ packer.startup(function()
     end
   }
 
-  use {
-    'lewis6991/spellsitter.nvim',
-    config = function()
-      require('config.spellsitter')
-    end
-  }
-
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/lsp_extensions.nvim'
 
