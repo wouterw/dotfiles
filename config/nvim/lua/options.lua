@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- quicker update
-vim.opt.updatetime = 500
+vim.opt.updatetime = 300
 
 -- Highlight Yank
 local au = require("au")
