@@ -4,7 +4,12 @@ require("telescope").setup {
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
-    mappings = {i = {["<esc>"] = actions.close, ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist}}
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+      }
+    }
   },
 }
 

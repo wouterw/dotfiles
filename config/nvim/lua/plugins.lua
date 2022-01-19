@@ -107,6 +107,7 @@ packer.startup(function()
   use 'tpope/vim-repeat'
 
   use 'sheerun/vim-polyglot'
+
   use 'projekt0n/github-nvim-theme'
 
   use {
