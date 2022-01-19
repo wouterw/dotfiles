@@ -22,13 +22,11 @@ end
 local map = require("util").map
 local opts = { noremap = true, silent = true }
 
-map("n", "<Leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+map("n", "<Leader>ff", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 map("n", "<Leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 
-map("n", "<Leader>fts", "<cmd>lua require('telescope.builtin').treesitter()<cr>", opts)
-
-map("n", "<Leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-map("n", "<Leader>fr", "<cmd>lua require('telescope.builtin').registers()<cr>", opts)
+map("n", "<Leader>fb", "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+map("n", "<Leader>fr", "<cmd>lua require('telescope.builtin').registers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 
 map("n", "<Leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
 map("n", "<Leader>fm", "<cmd>lua require('telescope.builtin').man_pages()<cr>", opts)
