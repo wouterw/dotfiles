@@ -1,5 +1,3 @@
-[init]
-  templatedir = ~/.git_template
 [protocol]
   version = 2
 [alias]
