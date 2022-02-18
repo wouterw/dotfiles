@@ -84,18 +84,5 @@
   signingkey = C348762F4939A0CE
 [help]
   autocorrect = 1
-[pager]
-  ; diff = diff-so-fancy | less --tabs=4 -RFXS
-  ; show = diff-so-fancy | less --tabs=4 -RFXS
-  diff = delta
-  log = delta
-  reflog = delta
-  show = delta
-[interactive]
-  diffFilter = delta --color-only
-[delta]
-  features = side-by-side line-numbers decorations
-[delta "decorations"]
-  hunk-header-style = omit
 [include]
   path = ~/.gitconfig.local
