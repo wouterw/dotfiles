@@ -1,11 +1,7 @@
 -- https://github.com/mhartington/formatter.nvim
 
 local prettier = function()
-  return {
-    exe = 'prettier',
-    args = { '--stdin-filepath', vim.api.nvim_buf_get_name(0) },
-    stdin = true,
-  }
+  return { exe = 'prettier', args = { '--stdin-filepath', vim.api.nvim_buf_get_name(0) }, stdin = true }
 end
 
 local isort = function()
@@ -17,27 +13,15 @@ local black = function()
 end
 
 local elixirfmt = function()
-  return {
-    exe = 'mix format',
-    args = {},
-    stdin = true,
-  }
+  return { exe = 'mix format', args = {}, stdin = true }
 end
 
 local rustfmt = function()
-  return {
-    exe = 'rustfmt',
-    args = { '--emit=stdout' },
-    stdin = true,
-  }
+  return { exe = 'rustfmt', args = { '--emit=stdout' }, stdin = true }
 end
 
-local luafmt = function()
-  return {
-    exe = 'luafmt',
-    args = { '--indent-count', 2, '--stdin' },
-    stdin = true,
-  }
+local stylua = function()
+  return { exe = 'stylua', args = { '-' }, stdin = true }
 end
 
 require('formatter').setup({
@@ -49,7 +33,7 @@ require('formatter').setup({
     javascript = { prettier },
     javascriptreact = { prettier },
     json = { prettier },
-    lua = { luafmt },
+    lua = { stylua },
     markdown = { prettier },
     python = { isort, black },
     rust = { rustfmt },

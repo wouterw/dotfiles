@@ -20,16 +20,16 @@ end
 local map = vim.keymap.set
 local opt = { noremap = true, silent = true }
 
-map('n', '<Leader>ff', "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opt)
-map('n', '<Leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", opt)
+local dropdown = require('telescope.themes').get_dropdown({ previewer = false })
 
-map('n', '<Leader>fb', "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opt)
-map('n', '<Leader>fr', "<cmd>lua require('telescope.builtin').registers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opt)
-
-map('n', '<Leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", opt)
-map('n', '<Leader>fm', "<cmd>lua require('telescope.builtin').man_pages()<cr>", opt)
-
-map('n', '<Leader>fs', "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opt)
-map('n', '<Leader>ca', function()
-  lsp_code_actions()
-end, opt)
+-- stylua: ignore start
+map('n', '<Leader>ff', function() return require('telescope.builtin').find_files(dropdown) end, opt)
+map('n', '<Leader>fb', function() return require('telescope.builtin').buffers(dropdown) end, opt)
+map('n', '<Leader>fr', function() return require('telescope.builtin').registers(dropdown) end, opt)
+map('n', '<Leader>fh', function() return require('telescope.builtin').help_tags() end, opt)
+map('n', '<Leader>fm', function() return require('telescope.builtin').man_pages() end, opt)
+map('n', '<space>=', function() return require('telescope.builtin').spell_suggest() end, opts)
+map('n', '<Leader>fs', function() return require('telescope.builtin').lsp_references() end, opt)
+map('n', '<Leader>fg', function() return require('telescope.builtin').live_grep() end, opt)
+map('n', '<Leader>ca', function() lsp_code_actions() end, opt)
+-- stylua: ignore end

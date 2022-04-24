@@ -1,5 +1,4 @@
 local lsp_installer = require('nvim-lsp-installer')
-local opts = require('lsp.opts')
 
 local servers = {
   'cssls',
@@ -12,61 +11,28 @@ local servers = {
   'tsserver',
 }
 
-USER = vim.fn.expand('$USER')
-
--- Automatic Installation
 for _, name in pairs(servers) do
-  local ok, server = lsp_installer.get_server(name)
-  -- Check that the server is supported in nvim-lsp-installer
-  if ok then
-    if not server:is_installed() then
-      print('[nvim-lsp-installer]: Installing ' .. name .. ' ...')
-      server:install()
-    end
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print('[nvim-lsp-installer]: Installing ' .. name)
+    server:install()
   end
 end
 
--- Configuration
+local custom_server_opts = {
+  ['efm'] = true,
+}
+
 lsp_installer.on_server_ready(function(server)
-  local default_opts = opts
+  -- Specify the default options which we'll use to setup all servers
+  local default_opts = require('lsp.opts')
 
-  local server_opts = {
-    ['efm'] = function()
-      default_opts = opts
+  if custom_server_opts[server.name] then
+    -- Enhance the default opts with the server-specific ones
+    require('lsp.servers.' .. server.name).setup(default_opts)
+  end
 
-      local eslint = {
-        lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
-        lintStdin = true,
-        lintFormats = { '%f:%l:%c: %m' },
-        lintIgnoreExitCode = true,
-        formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
-        formatStdin = true,
-      }
-
-      default_opts.settings = {
-        languages = {
-          javascript = { eslint },
-          javascriptreact = { eslint },
-          typescript = { eslint },
-          typescriptreact = { eslint },
-        },
-      }
-
-      default_opts.filetypes = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-      }
-
-      return default_opts
-    end,
-  }
-
-  -- We check to see if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts
-  server:setup(server_opts[server.name] and server_opts[server.name]() or opts)
-
-  vim.cmd([[ do User LspAttachBuffers ]])
+  server:setup(default_opts)
 end)
 
 -- Diagnostic icons
