@@ -2,7 +2,7 @@ vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 
 vim.g.nvim_tree_special_files = {}
-vim.g.nvim_tree_root_folder_modifier = ":p:~"
+vim.g.nvim_tree_root_folder_modifier = ':p:~'
 
 vim.g.nvim_tree_symlink_arrow = ' ⤑  '
 
@@ -13,7 +13,7 @@ vim.g.nvim_tree_show_icons = {
   folder_arrows = 0,
 }
 
-require("nvim-tree").setup({
+require('nvim-tree').setup({
   diagnostics = { enable = true },
   git = {
     enable = true,
@@ -27,12 +27,12 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = false,
-    custom = { ".git", "node_modules", ".cache", ".yarn" }
+    custom = { '.git', 'node_modules', '.cache', '.yarn' },
   },
   update_focused_file = { enable = true },
 })
 
 -- Mappings
-vim.keymap.set("n", "<C-n>", function()
+vim.keymap.set('n', '<C-n>', function()
   require('nvim-tree').toggle()
 end, { noremap = true, silent = true })

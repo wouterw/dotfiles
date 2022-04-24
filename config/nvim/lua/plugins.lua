@@ -2,10 +2,10 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-  execute("packadd packer.nvim")
+  execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  execute('packadd packer.nvim')
 end
 
 -- Auto source when there are changes in plugins.lua
@@ -17,117 +17,117 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
 
 -- Have packer use a popup window
-packer.init {
+packer.init({
   profile = { enable = true },
   display = {
     open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
+      return require('packer.util').float({ border = 'rounded' })
     end,
     prompt_border = 'rounded',
   },
-}
+})
 
 packer.startup(function()
-  use 'wbthomason/packer.nvim'
+  use('wbthomason/packer.nvim')
 
-  use {
+  use({
     'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
+    run = ':TSUpdate',
     config = function()
-      require("plugins.treesitter")
-    end
-  }
+      require('plugins.treesitter')
+    end,
+  })
 
-  use {
+  use({
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('plugins.gitsigns')
-    end
-  }
+    end,
+  })
 
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/lsp_extensions.nvim'
+  use('neovim/nvim-lspconfig')
+  use('nvim-lua/lsp_extensions.nvim')
 
-  use {
+  use({
     'williamboman/nvim-lsp-installer',
     config = function()
-      require("lsp.setup")
-    end
-  }
+      require('lsp.setup')
+    end,
+  })
 
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-buffer')
+  use('hrsh7th/cmp-path')
+  use('hrsh7th/cmp-cmdline')
 
-  use {
+  use({
     'hrsh7th/nvim-cmp',
     config = function()
-      require("plugins.cmp")
-    end
-  }
+      require('plugins.cmp')
+    end,
+  })
 
-  use {
+  use({
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("plugins.telescope")
-    end
-  }
+      require('plugins.telescope')
+    end,
+  })
 
-  use {
+  use({
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
-    end
-  }
+    end,
+  })
 
-  use {
+  use({
     'kyazdani42/nvim-tree.lua',
     config = function()
-      require("plugins.nvimtree")
-    end
-  }
+      require('plugins.nvimtree')
+    end,
+  })
 
-  use {
+  use({
     'tpope/vim-fugitive',
     config = function()
-      require("plugins.fugitive")
-    end
-  }
+      require('plugins.fugitive')
+    end,
+  })
 
-  use 'tpope/vim-surround'
-  use 'tpope/vim-unimpaired'
-  use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
-  use 'tpope/vim-repeat'
+  use('tpope/vim-surround')
+  use('tpope/vim-unimpaired')
+  use({ 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } })
+  use('tpope/vim-repeat')
 
-  use 'sheerun/vim-polyglot'
+  use('sheerun/vim-polyglot')
 
-  use {
+  use({
     'projekt0n/github-nvim-theme',
     config = function()
-      require("themes.github")
-    end
-  }
+      require('themes.github')
+    end,
+  })
 
-  use {
+  use({
     'mhartington/formatter.nvim',
     config = function()
-      require("plugins.formatter")
-    end
-  }
+      require('plugins.formatter')
+    end,
+  })
 
-  use {
+  use({
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup()
-    end
-  }
+    end,
+  })
 end)

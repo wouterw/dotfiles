@@ -1,10 +1,10 @@
 -- https://github.com/mhartington/formatter.nvim
 
-function prettier ()
+local prettier = function()
   return {
-    exe = "prettier",
-    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-    stdin = true
+    exe = 'prettier',
+    args = { '--stdin-filepath', vim.api.nvim_buf_get_name(0) },
+    stdin = true,
   }
 end
 
@@ -16,31 +16,31 @@ local black = function()
   return { exe = 'black', args = { '-' }, stdin = true }
 end
 
-function elixirfmt ()
+local elixirfmt = function()
   return {
-    exe = "mix format",
+    exe = 'mix format',
     args = {},
-    stdin = true
+    stdin = true,
   }
 end
 
-function rustfmt ()
+local rustfmt = function()
   return {
-    exe = "rustfmt",
-    args = {"--emit=stdout"},
-    stdin = true
+    exe = 'rustfmt',
+    args = { '--emit=stdout' },
+    stdin = true,
   }
 end
 
-function luafmt ()
+local luafmt = function()
   return {
-    exe = "luafmt",
-    args = {"--indent-count", 2, "--stdin"},
-    stdin = true
+    exe = 'luafmt',
+    args = { '--indent-count', 2, '--stdin' },
+    stdin = true,
   }
 end
 
-require("formatter").setup({
+require('formatter').setup({
   logging = false,
   filetype = {
     css = { prettier },
@@ -56,28 +56,28 @@ require("formatter").setup({
     typescript = { prettier },
     typescriptreact = { prettier },
     yaml = { prettier },
-  }
+  },
 })
 
 local files = {
-  "*.css",
-  "*.ex",
-  "*.exs",
-  "*.html",
-  "*.js",
-  "*.json",
-  "*.jsx",
-  "*.lua",
-  "*.markdown",
-  "*.md",
-  "*.mjs",
-  "*.py",
-  "*.rs",
-  "*.scss",
-  "*.ts",
-  "*.tsx",
-  "*.yaml",
-  "*.yml",
+  '*.css',
+  '*.ex',
+  '*.exs',
+  '*.html',
+  '*.js',
+  '*.json',
+  '*.jsx',
+  '*.lua',
+  '*.markdown',
+  '*.md',
+  '*.mjs',
+  '*.py',
+  '*.rs',
+  '*.scss',
+  '*.ts',
+  '*.tsx',
+  '*.yaml',
+  '*.yml',
 }
 
 local pattern = table.concat(files, ',')
