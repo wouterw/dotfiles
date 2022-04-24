@@ -1,27 +1,23 @@
 -- Leader key
 vim.g.mapleader = " "
 
+-- Statusline
+require('options.statusline')
+
+-- Single global statusline
+vim.opt.laststatus=3
+
 -- quicker update
 vim.opt.updatetime = 300
 
 -- Highlight Yank
-local au = require("au")
-au.TextYankPost = function()
-  vim.highlight.on_yank({higroup = "Search", timeout = 120})
-end
-
--- statusline
--- %<                                             trim from here
--- %{fugitive#head()}                             name of the current branch (needs fugitive.vim)
--- %f                                             path+filename
--- %m                                             check modifi{ed,able}
--- %r                                             check readonly
--- %w                                             check preview window
--- %=                                             left/right separator
--- %l/%L,%c                                       rownumber/total,colnumber
--- %{&fileencoding?&fileencoding:&encoding}       file encoding
-vim.opt.statusline =
-    "  %< %{fugitive#head()}  %f %m %r %w %= Ln %l, Col %c  %{&fileencoding?&fileencoding:&encoding}  "
+local group = vim.api.nvim_create_augroup('HighlightYank', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'Visual', timeout = 120 })
+  end,
+  group = group,
+})
 
 -- syntax highlighting
 vim.opt.termguicolors = true
@@ -37,11 +33,14 @@ vim.opt.cmdheight = 1 -- Less space for displaying messages
 vim.opt.conceallevel = 0 -- So that I can see `` in markdown files
 
 -- 2 character wide tab for indentation
+vim.opt.autoindent = true
+vim.g.smartintend = true
+-- control the number of space characters that will be inserted when the tab key is pressed
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-vim.opt.autoindent = true
-vim.g.smartintend = true
+-- insert space characters whenever the tab key is pressed
+vim.o.expandtab = true
 
 -- don't wrap lines
 vim.opt.wrap = false
@@ -103,6 +102,3 @@ vim.cmd [[ command! CLEAN retab | TEOL ]]
 vim.cmd [[ command! Q q ]]
 vim.cmd [[ command! W w ]]
 vim.cmd [[ command! Wq wq ]]
-
--- Single global statusline
-vim.opt.laststatus=3

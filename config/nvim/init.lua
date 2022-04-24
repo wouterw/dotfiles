@@ -1,4 +1,3 @@
 require("options")
-require("maps")
+require("keymaps")
 require("plugins")
-require("themes.github")

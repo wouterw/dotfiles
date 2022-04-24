@@ -11,9 +11,11 @@ cmp.setup({
     completeopt = "menu,menuone,noinsert"
   },
 
-  documentation = {
-    winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
-    border = "rounded"
+  window = {
+    documentation = {
+      winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+      border = "rounded"
+    },
   },
 
   mapping = {

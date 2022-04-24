@@ -8,6 +8,14 @@ function prettier ()
   }
 end
 
+local isort = function()
+  return { exe = 'isort', args = { '-' }, stdin = true }
+end
+
+local black = function()
+  return { exe = 'black', args = { '-' }, stdin = true }
+end
+
 function elixirfmt ()
   return {
     exe = "mix format",
@@ -35,40 +43,47 @@ end
 require("formatter").setup({
   logging = false,
   filetype = {
-    typescript = { prettier },
-    typescriptreact = { prettier },
+    css = { prettier },
+    elixir = { elixirfmt },
+    html = { prettier },
     javascript = { prettier },
     javascriptreact = { prettier },
-		css = { prettier },
-		json = { prettier },
-		yaml = { prettier },
-		markdown = { prettier },
-		html = { prettier },
-    rust = { rustfmt },
+    json = { prettier },
     lua = { luafmt },
-    elixir = { elixirfmt },
+    markdown = { prettier },
+    python = { isort, black },
+    rust = { rustfmt },
+    typescript = { prettier },
+    typescriptreact = { prettier },
+    yaml = { prettier },
   }
 })
 
-local au = require("au")
-
 local files = {
+  "*.css",
+  "*.ex",
+  "*.exs",
+  "*.html",
   "*.js",
+  "*.json",
   "*.jsx",
+  "*.lua",
+  "*.markdown",
+  "*.md",
   "*.mjs",
+  "*.py",
+  "*.rs",
+  "*.scss",
   "*.ts",
   "*.tsx",
-  "*.css",
-  "*.less",
-  "*.scss",
-  "*.json",
-  "*.md",
-  "*markdown",
-  "*.yml",
   "*.yaml",
-  "*.html",
+  "*.yml",
 }
 
-local ftypes = table.concat(files, ",")
-
-au.group("FormatAutogroup", {{"BufWritePost", ftypes, "FormatWrite"}})
+local pattern = table.concat(files, ',')
+local group = vim.api.nvim_create_augroup('Formatter', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = pattern,
+  command = 'FormatWrite',
+  group = group,
+})

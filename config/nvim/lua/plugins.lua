@@ -1,5 +1,5 @@
-local fn = vim.fn
 local execute = vim.api.nvim_command
+local fn = vim.fn
 
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
@@ -8,13 +8,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute("packadd packer.nvim")
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+-- Auto source when there are changes in plugins.lua
+local group = vim.api.nvim_create_augroup('PackerGroup', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile> | PackerCompile profile=true',
+  group = group,
+})
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -24,10 +24,12 @@ end
 
 -- Have packer use a popup window
 packer.init {
+  profile = { enable = true },
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return require("packer.util").float({ border = "rounded" })
     end,
+    prompt_border = 'rounded',
   },
 }
 
@@ -38,7 +40,7 @@ packer.startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     config = function()
-      require("config.treesitter")
+      require("plugins.treesitter")
     end
   }
 
@@ -46,7 +48,7 @@ packer.startup(function()
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('config.gitsigns')
+      require('plugins.gitsigns')
     end
   }
 
@@ -68,7 +70,7 @@ packer.startup(function()
   use {
     'hrsh7th/nvim-cmp',
     config = function()
-      require("config.cmp")
+      require("plugins.cmp")
     end
   }
 
@@ -76,7 +78,7 @@ packer.startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("config.telescope")
+      require("plugins.telescope")
     end
   }
 
@@ -90,14 +92,14 @@ packer.startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     config = function()
-      require("config.nvimtree")
+      require("plugins.nvimtree")
     end
   }
 
   use {
     'tpope/vim-fugitive',
     config = function()
-      require("config.fugitive")
+      require("plugins.fugitive")
     end
   }
 
@@ -108,12 +110,17 @@ packer.startup(function()
 
   use 'sheerun/vim-polyglot'
 
-  use 'projekt0n/github-nvim-theme'
+  use {
+    'projekt0n/github-nvim-theme',
+    config = function()
+      require("themes.github")
+    end
+  }
 
   use {
     'mhartington/formatter.nvim',
     config = function()
-      require("config.formatter")
+      require("plugins.formatter")
     end
   }
 

@@ -15,17 +15,24 @@ vim.g.nvim_tree_show_icons = {
 
 require("nvim-tree").setup({
   diagnostics = { enable = true },
-  tab_open = true,
-  auto_close = false,
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
   filters = {
     dotfiles = false,
     custom = { ".git", "node_modules", ".cache", ".yarn" }
   },
-  update_focused_file = {
-    enable = true
-  },
+  update_focused_file = { enable = true },
 })
 
 -- Mappings
-local map = require("util").map
-map("n", "<C-n>", ":lua require('nvim-tree').toggle()<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<C-n>", function()
+  require('nvim-tree').toggle()
+end, { noremap = true, silent = true })
