@@ -1,3 +1,5 @@
-require('github-theme').setup({
-  theme_style = 'dark_default',
+require("github-theme").setup({
+	theme_style = "light_default",
+	dark_sidebar = "false",
+	transparent = true,
 })

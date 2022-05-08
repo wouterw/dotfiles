@@ -36,7 +36,7 @@ local opts = {
     buf_set_keymap('n', '[d', "<cmd>lua vim.diagnostic.goto_prev({float={border='rounded'}})<CR>", opts)
     buf_set_keymap('n', ']d', "<cmd>lua vim.diagnostic.goto_next({float={border='rounded'}})<CR>", opts)
     buf_set_keymap('n', '<space>q', function() vim.diagnostic.set_loclist() end, opts)
-    buf_set_keymap('n', '<space>ff', function() vim.lsp.buf.formatting() end, opts)
+    -- buf_set_keymap('n', '<space>ff', function() vim.lsp.buf.formatting() end, opts)
     -- stylua: ignore end
 
     vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
