@@ -1,9 +1,23 @@
 require("nvim-tree").setup({
-	diagnostics = { enable = true },
+	view = {
+		hide_root_folder = true,
+		signcolumn = "no",
+	},
 	renderer = {
+		highlight_git = true,
+		indent_markers = { enable = true },
 		icons = {
+			webdev_colors = false,
+			show = {
+				file = false,
+				folder = false,
+				folder_arrow = true,
+				git = false,
+			},
 			glyphs = {
 				folder = {
+					arrow_closed = "●",
+					arrow_open = "○",
 					default = "●",
 					empty = "◌",
 					empty_open = "○",
@@ -11,7 +25,10 @@ require("nvim-tree").setup({
 				},
 			},
 		},
+		special_files = {},
 	},
+	update_focused_file = { enable = true },
+	diagnostics = { enable = true },
 })
 
 -- Mappings
