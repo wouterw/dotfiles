@@ -112,8 +112,16 @@ packer.startup(function()
 
   use({
     'projekt0n/github-nvim-theme',
+    -- config = function()
+    --   require("themes.github")
+    -- end,
+  })
+
+  use({
+    'metalelf0/jellybeans-nvim',
+    requires = { 'rktjmp/lush.nvim' },
     config = function()
-      require('themes.github')
+      require('themes.jellybeans')
     end,
   })
 
