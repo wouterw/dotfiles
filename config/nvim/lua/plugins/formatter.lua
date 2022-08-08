@@ -1,45 +1,22 @@
 -- https://github.com/mhartington/formatter.nvim
 
-local prettier = function()
-  return { exe = 'prettier', args = { '--stdin-filepath', vim.api.nvim_buf_get_name(0) }, stdin = true }
-end
-
-local isort = function()
-  return { exe = 'isort', args = { '-' }, stdin = true }
-end
-
-local black = function()
-  return { exe = 'black', args = { '-' }, stdin = true }
-end
-
-local elixirfmt = function()
-  return { exe = 'mix format', args = {}, stdin = true }
-end
-
-local rustfmt = function()
-  return { exe = 'rustfmt', args = { '--emit=stdout' }, stdin = true }
-end
-
-local stylua = function()
-  return { exe = 'stylua', args = { '-' }, stdin = true }
-end
-
 require('formatter').setup({
   logging = false,
   filetype = {
-    css = { prettier },
-    elixir = { elixirfmt },
-    html = { prettier },
-    javascript = { prettier },
-    javascriptreact = { prettier },
-    json = { prettier },
-    lua = { stylua },
-    markdown = { prettier },
-    python = { isort, black },
-    rust = { rustfmt },
-    typescript = { prettier },
-    typescriptreact = { prettier },
-    yaml = { prettier },
+    css = { require('formatter.filetypes.css').prettier },
+    elixir = { require('formatter.filetypes.elixir').mixformat },
+    html = { require('formatter.filetypes.html').prettier },
+    javascript = { require('formatter.filetypes.javascript').prettier },
+    javascriptreact = { require('formatter.filetypes.javascriptreact').prettier },
+    json = { require('formatter.filetypes.json').prettier },
+    lua = { require('formatter.filetypes.lua').stylua },
+    markdown = { require('formatter.filetypes.markdown').prettier },
+    python = { require('formatter.filetypes.python').isort, require('formatter.filetypes.python').black },
+    rust = { require('formatter.filetypes.rust').rustfmt },
+    typescript = { require('formatter.filetypes.typescript').prettier },
+    typescriptreact = { require('formatter.filetypes.typescriptreact').prettier },
+    yaml = { require('formatter.filetypes.yaml').prettier },
+    ['*'] = { require('formatter.filetypes.any').remove_trailing_whitespace },
   },
 })
 
