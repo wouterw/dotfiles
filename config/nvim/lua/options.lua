@@ -1,13 +1,10 @@
 -- Leader key
 vim.g.mapleader = ' '
 
--- Statusline
-require('options.statusline')
+-- Hide statusline
+vim.opt.laststatus = 0
 
--- Single global statusline
-vim.opt.laststatus = 3
-
--- quicker update
+-- Quicker update
 vim.opt.updatetime = 300
 
 -- Highlight Yank
@@ -19,7 +16,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
 })
 
--- syntax highlighting
+-- Syntax highlighting
 vim.opt.termguicolors = true
 vim.g.t_Co = 256
 vim.g.syntax_on = true
@@ -42,17 +39,17 @@ vim.opt.softtabstop = 2
 -- insert space characters whenever the tab key is pressed
 vim.o.expandtab = true
 
--- don't wrap lines
+-- Don't wrap lines
 vim.opt.wrap = false
 
--- search options
+-- Search options
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = true
 
--- line default relative number
+-- Line default relative number
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -66,7 +63,7 @@ vim.o.backup = false -- This is recommended by coc
 vim.o.swapfile = false
 vim.o.writebackup = false -- This is recommended by coc
 
--- whitespace characters
+-- Whitespace characters
 vim.wo.list = true
 vim.opt.listchars = 'tab:→ ,trail:•,nbsp:·,extends:»,precedes:«'
 
