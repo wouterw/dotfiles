@@ -2,7 +2,7 @@ local opts = {
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   on_attach = function(_, bufnr)
-    require('lsp.func')
+    require('lsp.visual')
 
     local function buf_set_keymap(mode, l, r, opts)
       opts = opts or {}
