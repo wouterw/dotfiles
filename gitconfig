@@ -35,6 +35,7 @@
   rebase = false
 [push]
   default = current
+  autoSetupRemote = true
 [commit]
   template = ~/.gitmessage
 [merge]
