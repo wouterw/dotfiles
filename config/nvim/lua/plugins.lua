@@ -110,20 +110,28 @@ packer.startup(function()
 
   use('sheerun/vim-polyglot')
 
-  use({
-    'projekt0n/github-nvim-theme',
-    -- config = function()
-    --   require("themes.github")
-    -- end,
-  })
+  -- use({
+  --   'projekt0n/github-nvim-theme',
+  --   config = function()
+  --     require('themes.github')
+  --   end,
+  -- })
 
   use({
-    'metalelf0/jellybeans-nvim',
-    requires = { 'rktjmp/lush.nvim' },
+    'catppuccin/nvim',
+    as = 'catppuccin',
     config = function()
-      require('themes.jellybeans')
+      require('themes.catppuccin')
     end,
   })
+
+  -- use({
+  --   'metalelf0/jellybeans-nvim',
+  --   requires = { 'rktjmp/lush.nvim' },
+  --   config = function()
+  --     require('themes.jellybeans')
+  --   end,
+  -- })
 
   use({
     'mhartington/formatter.nvim',
