@@ -52,25 +52,32 @@ packer.startup(function()
     end,
   })
 
-  use('neovim/nvim-lspconfig')
-  use('nvim-lua/lsp_extensions.nvim')
-
   use({
-    'williamboman/nvim-lsp-installer',
+    'williamboman/mason.nvim',
+    requires = {
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason-lspconfig.nvim' },
+
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-vsnip' },
+      { 'hrsh7th/vim-vsnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+    },
     config = function()
       require('lsp.setup')
+      require('lsp.cmp')
     end,
   })
 
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-buffer')
-  use('hrsh7th/cmp-path')
-  use('hrsh7th/cmp-cmdline')
-
   use({
-    'hrsh7th/nvim-cmp',
+    'nvim-tree/nvim-tree.lua',
     config = function()
-      require('plugins.cmp')
+      require('plugins.nvimtree')
     end,
   })
 
@@ -86,13 +93,6 @@ packer.startup(function()
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
-    end,
-  })
-
-  use({
-    'kyazdani42/nvim-tree.lua',
-    config = function()
-      require('plugins.nvimtree')
     end,
   })
 

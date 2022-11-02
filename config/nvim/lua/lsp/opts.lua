@@ -1,14 +1,13 @@
-local opts = {
+return {
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   on_attach = function(_, bufnr)
-    require('lsp.visual')
-
     local function buf_set_keymap(mode, l, r, opts)
       opts = opts or {}
       opts.buffer = bufnr
       vim.keymap.set(mode, l, r, opts)
     end
+
     local function buf_set_option(...)
       vim.api.nvim_buf_set_option(bufnr, ...)
     end
@@ -45,5 +44,3 @@ local opts = {
   end,
   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
-
-return opts

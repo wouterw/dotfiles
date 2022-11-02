@@ -1,4 +1,4 @@
-local lsp_installer = require('nvim-lsp-installer')
+require('lsp.visual').setup()
 
 local servers = {
   'cssls',
@@ -11,15 +11,19 @@ local servers = {
   'tsserver',
 }
 
-lsp_installer.setup({
+require('mason').setup({
+  ui = { border = 'rounded' },
+})
+
+require('mason-lspconfig').setup({
   ensure_installed = servers,
   automatic_installation = true,
 })
 
-for _, name in ipairs(servers) do
-  -- Specify the default options which we'll use to setup all servers
-  local default_opts = require('lsp.opts')
+-- Specify the default options which we'll use to setup all servers
+local default_opts = require('lsp.opts')
 
+for _, name in ipairs(servers) do
   -- Enhance the default opts with the server-specific ones
   pcall(function()
     require('lsp.servers.' .. name).setup(default_opts)
