@@ -2,45 +2,66 @@ return {
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
   on_attach = function(_, bufnr)
-    local function buf_set_keymap(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-
-    local function buf_set_option(...)
-      vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
     -- Enable completion triggered by <c-x><c-o>
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = { noremap = true, silent = true }
+    local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    -- stylua: ignore start
-    buf_set_keymap('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
-    buf_set_keymap('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-    buf_set_keymap('n', 'K', function() vim.lsp.buf.hover() end, opts)
-    buf_set_keymap('n', 'gi', function() vim.lsp.buf.implementation() end, opts)
-    buf_set_keymap('n', '<C-k>', function() vim.lsp.buf.signature_help() end, opts)
-    buf_set_keymap('n', '<space>wa', function() vim.lsp.buf.add_workspace_folder() end, opts)
-    buf_set_keymap('n', '<space>wr', function() vim.lsp.buf.remove_workspace_folder() end, opts)
-    buf_set_keymap('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
-    buf_set_keymap('n', '<space>D', function() vim.lsp.buf.type_definition() end, opts)
-    buf_set_keymap('n', '<F2>', function() vim.lsp.buf.rename() end, opts)
-    buf_set_keymap('n', 'gr', function() vim.lsp.buf.references() end, opts)
-    buf_set_keymap('n', '<space>e', "<cmd>lua vim.diagnostic.show_line_diagnostics({float={border='rounded'}})<CR>", opts)
-    buf_set_keymap('n', '[d', "<cmd>lua vim.diagnostic.goto_prev({float={border='rounded'}})<CR>", opts)
-    buf_set_keymap('n', ']d', "<cmd>lua vim.diagnostic.goto_next({float={border='rounded'}})<CR>", opts)
-    buf_set_keymap('n', '<space>q', function() vim.diagnostic.set_loclist() end, opts)
-    -- buf_set_keymap('n', '<space>ff', function() vim.lsp.buf.formatting() end, opts)
-    -- stylua: ignore end
+    -- Show diagnostics in a floating window.
+    vim.keymap.set('n', '<space>e', function()
+      vim.diagnostic.open_float({ border = 'rounded' })
+    end, opts)
 
-    vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+    -- Move to the previous diagnostic in the current buffer.
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 
-    print('LSP Attached.')
+    -- Move to the next diagnostic in the current buffer.
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
+    -- Add buffer diagnostics to the location list.
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+    -- Jumps to the declaration of the symbol under the cursor.
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+
+    -- Jumps to the definition of the symbol under the cursor.
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+
+    -- Lists all the implementations for the symbol under the cursor in the quickfix window.
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+
+    -- Lists all the references to the symbol under the cursor in the quickfix window.
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+
+    -- Displays hover information about the symbol under the cursor in a floating window.
+    -- Calling the function twice will jump into the floating window.
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+    -- Displays signature information about the symbol under the cursor in a floating window.
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+    -- Add the folder at path to the workspace folders.
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+
+    -- Remove the folder at path from the workspace folders.
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+
+    --  List workspace folders.
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+
+    -- Jumps to the definition of the type of the symbol under the cursor.
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+
+    -- Renames all references to the symbol under the cursor.
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+
+    -- Selects a code action available at the current cursor position.
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   end,
-  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+
+  -- Add additional capabilities supported by nvim-cmp
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
