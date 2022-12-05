@@ -12,7 +12,6 @@ end
 cmp.setup({
   completion = {
     autocomplete = true,
-    completeopt = 'menu,menuone,noinsert',
   },
 
   window = {

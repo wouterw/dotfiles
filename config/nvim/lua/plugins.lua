@@ -56,8 +56,8 @@ packer.startup(function()
     'williamboman/mason.nvim',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'neovim/nvim-lspconfig' },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -146,4 +146,6 @@ packer.startup(function()
       require('nvim-autopairs').setup()
     end,
   })
+
+  use('simrat39/rust-tools.nvim')
 end)
