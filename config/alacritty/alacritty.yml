@@ -15,16 +15,16 @@ scrolling:
 
 font:
   normal:
-    family: JetBrains Mono NL
+    family: Berkeley Mono
     style: Regular
   bold:
-    family: JetBrains Mono NL
+    family: Berkeley Mono
     style: Bold
   italic:
-    family: JetBrains Mono NL
+    family: Berkeley Mono
     style: Italic
   bold_italic:
-    family: JetBrains Mono NL
+    family: Berkeley Mono
     style: Bold Italic
   size: 12.0
 
