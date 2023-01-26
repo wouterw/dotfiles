@@ -5,6 +5,6 @@ end
 
 local flavour = (is_dark_mode() and 'mocha' or 'latte')
 
-vim.cmd.colorscheme('catppuccin')
-
 require('catppuccin').setup({ flavour = flavour, transparent_background = true })
+
+vim.cmd.colorscheme('catppuccin')

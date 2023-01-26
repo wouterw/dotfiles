@@ -104,18 +104,14 @@ packer.startup(function()
   })
 
   use('tpope/vim-surround')
-  use('tpope/vim-unimpaired')
-  use({ 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } })
   use('tpope/vim-repeat')
 
-  use('sheerun/vim-polyglot')
-
-  -- use({
-  --   'projekt0n/github-nvim-theme',
-  --   config = function()
-  --     require('themes.github')
-  --   end,
-  -- })
+  use({
+    'projekt0n/github-nvim-theme',
+    config = function()
+      -- require('themes.github')
+    end,
+  })
 
   use({
     'catppuccin/nvim',
@@ -126,16 +122,17 @@ packer.startup(function()
   })
 
   use({
-    'mhartington/formatter.nvim',
+    'rose-pine/neovim',
+    as = 'rose-pine',
     config = function()
-      require('plugins.formatter')
+      -- require('themes.rose-pine')
     end,
   })
 
   use({
-    'windwp/nvim-autopairs',
+    'mhartington/formatter.nvim',
     config = function()
-      require('nvim-autopairs').setup()
+      require('plugins.formatter')
     end,
   })
 
