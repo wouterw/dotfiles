@@ -125,14 +125,6 @@ packer.startup(function()
     end,
   })
 
-  -- use({
-  --   'metalelf0/jellybeans-nvim',
-  --   requires = { 'rktjmp/lush.nvim' },
-  --   config = function()
-  --     require('themes.jellybeans')
-  --   end,
-  -- })
-
   use({
     'mhartington/formatter.nvim',
     config = function()
