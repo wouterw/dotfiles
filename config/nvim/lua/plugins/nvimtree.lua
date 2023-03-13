@@ -38,5 +38,5 @@ require('nvim-tree').setup({
 
 -- Mappings
 vim.keymap.set('n', '<C-n>', function()
-  require('nvim-tree').toggle()
+  require('nvim-tree.api').tree.toggle()
 end, { noremap = true, silent = true })
