@@ -91,6 +91,9 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 
 autoload -Uz compinit && compinit
 
+source <(kubectl completion zsh)
+alias k=kubectl
+
 # ------------------------------------------------------------------------------
 # Setup PATH
 # ------------------------------------------------------------------------------
@@ -100,7 +103,6 @@ PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # load asdf
 [[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]] && . "$(brew --prefix asdf)/libexec/asdf.sh"
-
 
 # load yarn
 PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
