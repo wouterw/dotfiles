@@ -53,24 +53,21 @@ packer.startup(function()
   })
 
   use({
-    'williamboman/mason.nvim',
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     requires = {
-      -- LSP Support
-      { 'williamboman/mason-lspconfig.nvim' },
       { 'neovim/nvim-lspconfig' },
-
-      -- Autocompletion
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
       { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-vsnip' },
-      { 'hrsh7th/vim-vsnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'L3MON4D3/LuaSnip' },
     },
     config = function()
       require('lsp.setup')
-      require('lsp.cmp')
     end,
   })
 
@@ -107,25 +104,10 @@ packer.startup(function()
   use('tpope/vim-repeat')
 
   use({
-    'projekt0n/github-nvim-theme',
-    config = function()
-      -- require('themes.github')
-    end,
-  })
-
-  use({
     'catppuccin/nvim',
     as = 'catppuccin',
     config = function()
       require('themes.catppuccin')
-    end,
-  })
-
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      -- require('themes.rose-pine')
     end,
   })
 
