@@ -2,13 +2,19 @@ local actions = require('telescope.actions')
 
 require('telescope').setup({
   defaults = {
-    -- prompt_prefix = ' ',
-    -- selection_caret = ' ',
     mappings = {
       i = {
         ['<esc>'] = actions.close,
         ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
       },
+    },
+  },
+  pickers = {
+    find_files = {
+      find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
+    },
+    buffers = {
+      show_all_buffers = true,
     },
   },
 })
@@ -28,7 +34,7 @@ map('n', '<Leader>fb', function() return require('telescope.builtin').buffers(dr
 map('n', '<Leader>fr', function() return require('telescope.builtin').registers(dropdown) end, opt)
 map('n', '<Leader>fh', function() return require('telescope.builtin').help_tags() end, opt)
 map('n', '<Leader>fm', function() return require('telescope.builtin').man_pages() end, opt)
-map('n', '<space>=', function() return require('telescope.builtin').spell_suggest() end, opts)
+map('n', '<space>=', function() return require('telescope.builtin').spell_suggest() end, opt)
 map('n', '<Leader>fs', function() return require('telescope.builtin').lsp_references() end, opt)
 map('n', '<Leader>fg', function() return require('telescope.builtin').live_grep() end, opt)
 map('n', '<Leader>ca', function() lsp_code_actions() end, opt)
