@@ -1,9 +1,9 @@
 require('nvim-tree').setup({
   view = {
-    hide_root_folder = true,
     signcolumn = 'no',
   },
   renderer = {
+    root_folder_label = false,
     highlight_git = true,
     indent_markers = { enable = true },
     icons = {
