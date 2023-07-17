@@ -54,7 +54,7 @@ packer.startup(function()
 
   use({
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'dev-v3',
     requires = {
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
