@@ -112,6 +112,13 @@ packer.startup(function()
   })
 
   use({
+    'projekt0n/github-nvim-theme',
+    config = function()
+      -- require('themes.github')
+    end,
+  })
+
+  use({
     'mhartington/formatter.nvim',
     config = function()
       require('plugins.formatter')

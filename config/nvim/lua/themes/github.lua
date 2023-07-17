@@ -4,7 +4,7 @@ local function is_dark_mode()
 end
 
 require('github-theme').setup({
-  theme_style = is_dark_mode() and 'dark_default' or 'light_default',
-  dark_sidebar = false,
-  transparent = true,
+  dim_inactive = false,
 })
+
+vim.cmd.colorscheme(is_dark_mode() and 'github_dark_high_contrast' or 'github_light_high_contrast')
