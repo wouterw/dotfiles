@@ -4,7 +4,7 @@ return {
 	font = wezterm.font("Berkeley Mono"),
 	font_size = 12.0,
 	color_scheme = "Jellybeans",
-	window_background_opacity = 0.95,
+	window_background_opacity = 1,
 	window_decorations = "RESIZE",
 	window_padding = { left = "2cell", right = "2cell", top = "0.5cell", bottom = "0.5cell" },
 	use_fancy_tab_bar = false,
