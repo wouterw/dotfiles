@@ -8,6 +8,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>vca', function()
     vim.lsp.buf.code_action()
   end, opts)
+
+  vim.keymap.set('n', '<leader>vrr', function()
+    vim.lsp.buf.references()
+  end, opts)
+
+  vim.keymap.set('n', '<leader>vrn', function()
+    vim.lsp.buf.rename()
+  end, opts)
 end)
 
 require('mason').setup({
@@ -26,19 +34,53 @@ require('mason-lspconfig').setup({
   },
 })
 
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '',
+})
+
+vim.diagnostic.config({
+  virtual_text = true,
+  severity_sort = true,
+  float = {
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+})
+
 require('lsp-zero').extend_cmp()
 
 local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
+  window = {
+    documentation = cmp.config.window.bordered(),
+  },
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 2 },
   },
   mapping = {
-    -- `Enter` key to confirm completion
+    -- confirm completion item
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
+
+    -- toggle completion menu
+    ['<C-e>'] = cmp_action.toggle_completion(),
 
     -- `Ctrl+Space` to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
