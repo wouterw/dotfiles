@@ -35,10 +35,10 @@ require('mason-lspconfig').setup({
 })
 
 lsp.set_sign_icons({
-  error = '✘',
-  warn = '▲',
-  hint = '⚑',
-  info = '',
+  error = '⨯',
+  warn = '⊘',
+  hint = '⊙',
+  info = '▸',
 })
 
 vim.diagnostic.config({
