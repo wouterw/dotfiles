@@ -18,6 +18,8 @@ lsp.on_attach(function(client, bufnr)
   end, opts)
 end)
 
+require('lspconfig.ui.windows').default_options.border = 'rounded'
+
 require('mason').setup({
   ui = {
     border = 'rounded',
@@ -25,7 +27,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { 'tsserver', 'rust_analyzer' },
+  ensure_installed = { 'ruby_ls', 'lua_ls', 'tsserver', 'rust_analyzer' },
   handlers = {
     lsp.default_setup,
     lua_ls = function()
