@@ -91,7 +91,8 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 
 autoload -Uz compinit && compinit
 
-source <(kubectl completion zsh)
+# kubectl autocomplete
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 alias k=kubectl
 
 # ------------------------------------------------------------------------------
@@ -99,7 +100,7 @@ alias k=kubectl
 # ------------------------------------------------------------------------------
 
 # ensure dotfiles bin directory is loaded first
-PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
+PATH="$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # load asdf
 [[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]] && . "$(brew --prefix asdf)/libexec/asdf.sh"
