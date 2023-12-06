@@ -9,6 +9,9 @@ map('n', '<C-]>', ':cnext<CR>', opt)
 map('n', '<C-[>', ':cprev<CR>', opt)
 map('n', '<C-\\>', ':clist<CR>', opt)
 
+-- bind K to grep word under cursor
+-- map('n', 'K', ':grep! "\b<C-R><C-W>\b"<CR>:cw<CR>', opt)
+
 -- Buffer
 map('n', '<Leader>]', ':bnext<CR>', opt)
 map('n', '<Leader>[', ':bprev<CR>', opt)
