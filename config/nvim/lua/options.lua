@@ -78,6 +78,10 @@ vim.bo.errorformat = [[
     %-G%.%#
 ]]
 
+-- 'foldtext' can be disabled so the text is rendered/highlighted normally.
+vim.o.foldtext = ''
+vim.o.fillchars = 'fold: '
+
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
 vim.opt.splitright = true

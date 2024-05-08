@@ -27,7 +27,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { 'ruby_ls', 'lua_ls', 'tsserver', 'rust_analyzer' },
+  ensure_installed = { 'ruby_lsp', 'lua_ls', 'tsserver', 'rust_analyzer' },
   handlers = {
     lsp.default_setup,
     lua_ls = function()
@@ -49,7 +49,7 @@ vim.diagnostic.config({
   float = {
     style = 'minimal',
     border = 'rounded',
-    source = 'always',
+    source = true,
     header = '',
     prefix = '',
   },
@@ -75,7 +75,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'buffer', keyword_length = 3 },
+    { name = 'buffer',  keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
   },
   mapping = {
