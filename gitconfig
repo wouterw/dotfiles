@@ -3,7 +3,7 @@
 [alias]
   aa = add --all
   ap = add --patch
-  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:black)%(color:bold)%(refname:short)\" refs/remotes
+  branches = "for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:black)%(color:bold)%(refname:short)\" refs/remotes"
   ci = commit -v
   co = checkout
   pf = push --force-with-lease
@@ -85,7 +85,10 @@
   signingkey = C348762F4939A0CE
 [help]
   autocorrect = 1
-[include]
-  path = ~/.gitconfig.local
 [init]
   defaultBranch = main
+[rerere]
+  enabled = true
+  autoUpdate = true
+[include]
+  path = ~/.gitconfig.local
