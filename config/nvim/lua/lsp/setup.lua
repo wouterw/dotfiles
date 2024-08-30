@@ -1,7 +1,9 @@
-local lsp = require('lsp-zero').preset({})
+local lsp_zero = require('lsp-zero')
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
+local lsp_attach = function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({ buffer = bufnr })
 
   local opts = { buffer = bufnr, remap = false }
 
@@ -16,7 +18,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>vrn', function()
     vim.lsp.buf.rename()
   end, opts)
-end)
+end
+
+lsp_zero.extend_lspconfig({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  lsp_attach = lsp_attach,
+  float_border = 'rounded',
+  sign_text = true,
+})
 
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 
@@ -29,18 +38,12 @@ require('mason').setup({
 require('mason-lspconfig').setup({
   ensure_installed = { 'ruby_lsp', 'lua_ls', 'tsserver', 'rust_analyzer' },
   handlers = {
-    lsp.default_setup,
-    lua_ls = function()
-      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    -- this first function is the "default handler"
+    -- it applies to every language server without a "custom handler"
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
     end,
   },
-})
-
-lsp.set_sign_icons({
-  error = '⨯',
-  warn = '⊘',
-  hint = '⊙',
-  info = '▸',
 })
 
 vim.diagnostic.config({
@@ -55,12 +58,7 @@ vim.diagnostic.config({
   },
 })
 
-require('lsp-zero').extend_cmp()
-
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
-require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   preselect = 'item',
@@ -76,16 +74,11 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'buffer',  keyword_length = 3 },
-    { name = 'luasnip', keyword_length = 2 },
   },
-  mapping = {
-    -- confirm completion item
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-
-    -- toggle completion menu
-    ['<C-e>'] = cmp_action.toggle_completion(),
-
-    -- `Ctrl+Space` to trigger completion menu
-    ['<C-Space>'] = cmp.mapping.complete(),
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
   },
+  mapping = cmp.mapping.preset.insert({}),
 })
