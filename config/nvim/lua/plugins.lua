@@ -16,16 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
 
   {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- require('themes.catppuccin')
-    end,
-  },
-
-  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
