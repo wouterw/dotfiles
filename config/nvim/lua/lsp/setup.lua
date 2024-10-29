@@ -36,7 +36,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { 'ruby_lsp', 'lua_ls', 'tsserver', 'rust_analyzer' },
+  ensure_installed = { 'ruby_lsp', 'lua_ls', 'ts_ls', 'rust_analyzer' },
   handlers = {
     -- this first function is the "default handler"
     -- it applies to every language server without a "custom handler"
