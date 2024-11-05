@@ -143,6 +143,10 @@ PATH="$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 # load vscode
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# load atuin
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
 # Export PATH
 export -U PATH
 
