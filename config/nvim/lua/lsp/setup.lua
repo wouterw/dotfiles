@@ -46,6 +46,12 @@ require('mason-lspconfig').setup({
   },
 })
 
+require('lspconfig').ruby_lsp.setup({
+  init_options = {
+    formatter = 'syntax_tree',
+  },
+})
+
 vim.diagnostic.config({
   virtual_text = true,
   severity_sort = true,
