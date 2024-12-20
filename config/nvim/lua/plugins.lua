@@ -14,30 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- require('themes.catppuccin')
-    end,
-  },
-
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd('set background=light')
-      -- vim.cmd('colorscheme rose-pine')
-      -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      -- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    end,
-  },
-
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -68,12 +44,18 @@ require('lazy').setup({
   },
 
   {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = 'v0.*',
+    opts = {
+      keymap = { preset = 'default' },
+
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+
+      signature = { enabled = true }
     },
   },
 
@@ -82,7 +64,7 @@ require('lazy').setup({
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'saghen/blink.cmp' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
     },
@@ -93,7 +75,7 @@ require('lazy').setup({
 
   {
     "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()
       require('plugins.oil')
     end,

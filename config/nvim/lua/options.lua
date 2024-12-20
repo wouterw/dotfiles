@@ -103,8 +103,3 @@ vim.cmd([[ command! CLEAN retab | TEOL ]])
 vim.cmd([[ command! Q q ]])
 vim.cmd([[ command! W w ]])
 vim.cmd([[ command! Wq wq ]])
-
--- Remove background
-vim.cmd([[ highlight Normal guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE ]])
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })

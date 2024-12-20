@@ -20,8 +20,10 @@ local lsp_attach = function(client, bufnr)
   end, opts)
 end
 
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+
 lsp_zero.extend_lspconfig({
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  capabilities = capabilities,
   lsp_attach = lsp_attach,
   float_border = 'rounded',
   sign_text = true,
@@ -62,29 +64,4 @@ vim.diagnostic.config({
     header = '',
     prefix = '',
   },
-})
-
-local cmp = require('cmp')
-
-cmp.setup({
-  preselect = 'item',
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  sources = {
-    { name = 'path' },
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'buffer',  keyword_length = 3 },
-  },
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({}),
 })
