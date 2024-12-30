@@ -82,6 +82,18 @@ vim.bo.errorformat = [[
 vim.o.foldtext = ''
 vim.o.fillchars = 'fold: '
 
+-- LSP folding support
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
+vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
+vim.o.foldcolumn = '1'
+vim.o.foldenable = true
+vim.o.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldmethod = 'expr'
+
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
 vim.opt.splitright = true
