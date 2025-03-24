@@ -1,50 +1,27 @@
--- https://github.com/mhartington/formatter.nvim
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "isort", "black" },
+    rust = { "rustfmt", lsp_format = "fallback" },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    typescript = { "prettierd", "prettier", stop_after_first = true },
+    css = { "prettierd", "prettier", stop_after_first = true },
+    html = { "prettierd", "prettier", stop_after_first = true },
+    elixir = { "mix" },
+    json = { "prettierd", "prettier", stop_after_first = true },
+    markdown = { "prettierd", "prettier", stop_after_first = true },
+    yaml = { "prettierd", "prettier", stop_after_first = true },
 
-require('formatter').setup({
-  logging = false,
-  filetype = {
-    css = { require('formatter.filetypes.css').prettier },
-    elixir = { require('formatter.filetypes.elixir').mixformat },
-    html = { require('formatter.filetypes.html').prettier },
-    javascript = { require('formatter.filetypes.javascript').prettier },
-    javascriptreact = { require('formatter.filetypes.javascriptreact').prettier },
-    json = { require('formatter.filetypes.json').prettier },
-    lua = { require('formatter.filetypes.lua').stylua },
-    markdown = { require('formatter.filetypes.markdown').prettier },
-    python = { require('formatter.filetypes.python').isort, require('formatter.filetypes.python').black },
-    rust = { require('formatter.filetypes.rust').rustfmt },
-    typescript = { require('formatter.filetypes.typescript').prettier },
-    typescriptreact = { require('formatter.filetypes.typescriptreact').prettier },
-    yaml = { require('formatter.filetypes.yaml').prettier },
-    ['*'] = { require('formatter.filetypes.any').remove_trailing_whitespace },
+    -- Use the "*" filetype to run formatters on all filetypes.
+    ["*"] = { "codespell" },
+
+    -- Use the "_" filetype to run formatters on filetypes that don't
+    -- have other formatters configured.
+    ["_"] = { "trim_whitespace" },
+
   },
-})
-
-local files = {
-  '*.css',
-  '*.ex',
-  '*.exs',
-  '*.html',
-  '*.js',
-  '*.json',
-  '*.jsx',
-  '*.lua',
-  '*.markdown',
-  '*.md',
-  '*.mjs',
-  '*.py',
-  '*.rs',
-  '*.scss',
-  '*.ts',
-  '*.tsx',
-  '*.yaml',
-  '*.yml',
-}
-
-local pattern = table.concat(files, ',')
-local group = vim.api.nvim_create_augroup('Formatter', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = pattern,
-  command = 'FormatWrite',
-  group = group,
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
 })

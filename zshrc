@@ -137,8 +137,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # ensure dotfiles bin directory is loaded first
 PATH="$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
-# load asdf (git)
-. "$HOME/.asdf/asdf.sh"
+# asdf
+PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # load cargo
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env

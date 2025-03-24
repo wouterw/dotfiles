@@ -55,6 +55,7 @@ vim.opt.relativenumber = true
 
 vim.wo.cursorline = true -- Enable highlighting of the current line
 vim.wo.signcolumn = 'yes:1' -- Always show the signcolumn, otherwise it would shift the text each time
+-- vim.wo.statuscolumn = "%l%s"
 
 vim.wo.scrolloff = 10
 vim.wo.sidescrolloff = 30

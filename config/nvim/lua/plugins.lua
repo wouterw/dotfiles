@@ -23,11 +23,12 @@ require('lazy').setup({
   },
 
   {
-    'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    'echasnovski/mini.nvim',
+    version = false,
     config = function()
-      require('plugins.gitsigns')
-    end,
+      require('mini.surround').setup()
+      require('mini.ai').setup()
+    end
   },
 
   {
@@ -90,30 +91,19 @@ require('lazy').setup({
   },
 
   {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
-  },
-
-  {
     'tpope/vim-fugitive',
     config = function()
       require('plugins.fugitive')
     end,
   },
 
-  { 'tpope/vim-surround' },
-  { 'tpope/vim-repeat' },
-
   {
-    'mhartington/formatter.nvim',
+    'stevearc/conform.nvim',
+    opts = {},
     config = function()
       require('plugins.formatter')
     end,
   },
-
-  { 'simrat39/rust-tools.nvim' },
 
   { 'github/copilot.vim' },
 }, {

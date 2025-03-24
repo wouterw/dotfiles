@@ -28,3 +28,7 @@ map('n', 'Q', '<Nop>', opt)
 -- Move visual selection up or down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- :xnoremap y zy
+-- :nnoremap p zp
+-- :nnoremap P zP
