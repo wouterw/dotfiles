@@ -1,5 +1,5 @@
 -- Leader key
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- Hide statusline
 vim.opt.laststatus = 0
@@ -8,10 +8,10 @@ vim.opt.laststatus = 0
 vim.opt.updatetime = 300
 
 -- Highlight Yank
-local group = vim.api.nvim_create_augroup('HighlightYank', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local group = vim.api.nvim_create_augroup("HighlightYank", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ higroup = 'Visual', timeout = 120 })
+    vim.highlight.on_yank { higroup = "Visual", timeout = 120 }
   end,
   group = group,
 })
@@ -21,13 +21,13 @@ vim.opt.termguicolors = true
 vim.g.t_Co = 256
 vim.g.syntax_on = true
 
-vim.opt.hidden = true -- Required to keep multiple buffers open multiple buffers
-vim.opt.pumheight = 10 -- Makes popup menu smaller
+vim.opt.hidden = true          -- Required to keep multiple buffers open multiple buffers
+vim.opt.pumheight = 10         -- Makes popup menu smaller
 
-vim.opt.fileencoding = 'utf-8' -- The encoding written to file
-vim.opt.cmdheight = 1 -- Less space for displaying messages
+vim.opt.fileencoding = "utf-8" -- The encoding written to file
+vim.opt.cmdheight = 1          -- Less space for displaying messages
 
-vim.opt.conceallevel = 0 -- So that I can see `` in markdown files
+vim.opt.conceallevel = 0       -- So that I can see `` in markdown files
 
 -- 2 character wide tab for indentation
 vim.opt.autoindent = true
@@ -53,23 +53,23 @@ vim.opt.wrapscan = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.wo.cursorline = true -- Enable highlighting of the current line
-vim.wo.signcolumn = 'yes:1' -- Always show the signcolumn, otherwise it would shift the text each time
+vim.wo.cursorline = true    -- Enable highlighting of the current line
+vim.wo.signcolumn = "yes:1" -- Always show the signcolumn, otherwise it would shift the text each time
 -- vim.wo.statuscolumn = "%l%s"
 
 vim.wo.scrolloff = 10
 vim.wo.sidescrolloff = 30
 
-vim.o.backup = false -- This is recommended by coc
+vim.o.backup = false      -- This is recommended by coc
 vim.o.swapfile = false
 vim.o.writebackup = false -- This is recommended by coc
 
 -- Whitespace characters
 vim.wo.list = true
-vim.opt.listchars = 'tab:→ ,trail:•,nbsp:·,extends:»,precedes:«'
+vim.opt.listchars = "tab:→ ,trail:•,nbsp:·,extends:»,precedes:«"
 
 -- Copy and paste with OS clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Error format
 vim.bo.errorformat = [[
@@ -80,20 +80,18 @@ vim.bo.errorformat = [[
 ]]
 
 -- 'foldtext' can be disabled so the text is rendered/highlighted normally.
-vim.o.foldtext = ''
-vim.o.fillchars = 'fold: '
+vim.o.foldtext = ""
+vim.o.fillchars = "fold: "
 
 -- LSP folding support
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
-vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
-vim.o.foldcolumn = '1'
+vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+-- vim.o.foldcolumn = "1"
 vim.o.foldenable = true
-vim.o.foldexpr = 'v:lua.vim.lsp.foldexpr()'
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
-vim.o.foldmethod = 'expr'
 
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
@@ -109,13 +107,10 @@ vim.opt.autoread = true
 vim.opt.undofile = true
 
 -- Trim spaces at EOL and retab
-vim.cmd([[ command! TEOL %s/\s\+$// ]])
-vim.cmd([[ command! CLEAN retab | TEOL ]])
+vim.cmd [[ command! TEOL %s/\s\+$// ]]
+vim.cmd [[ command! CLEAN retab | TEOL ]]
 
 -- Embrace typos
-vim.cmd([[ command! Q q ]])
-vim.cmd([[ command! W w ]])
-vim.cmd([[ command! Wq wq ]])
-
--- default border for all floating windows
-vim.opt.winborder = "rounded"
+vim.cmd [[ command! Q q ]]
+vim.cmd [[ command! W w ]]
+vim.cmd [[ command! Wq wq ]]
