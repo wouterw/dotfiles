@@ -102,6 +102,9 @@ if type brew &>/dev/null; then
   FPATH=/usr/local/share/zsh/site-functions:$FPATH
 fi
 
+# Add asdf completions to fpath
+FPATH=${ASDF_DATA_DIR:-$HOME/.asdf}/completions:$FPATH
+
 # Speed up completion init, see: https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
@@ -147,8 +150,10 @@ PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # load atuin
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
+if [[ -f ~/.atium/bin/env ]]; then
+  . "$HOME/.atuin/bin/env"
+  eval "$(atuin init zsh)"
+fi
 
 # Export PATH
 export -U PATH
