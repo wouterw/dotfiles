@@ -150,7 +150,7 @@ PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # load atuin
-if [[ -f ~/.atium/bin/env ]]; then
+if [[ -f ~/.atuin/bin/env ]]; then
   . "$HOME/.atuin/bin/env"
   eval "$(atuin init zsh)"
 fi
