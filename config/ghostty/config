@@ -1,7 +1,7 @@
-font-family = TX-02
+font-family = Input Mono
 font-size = 11
 font-thicken = true
-font-thicken-strength = 100
+font-thicken-strength = 1
 
 theme = light:xcodelighthc,dark:xcodedarkhc
 
