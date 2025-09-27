@@ -16,14 +16,21 @@ Clone dotfiles repository:
 git clone https://github.com/wouterw/dotfiles.git ~/.dotfiles
 ```
 
-Install [rcm](https://github.com/thoughtbot/rcm):
+Install [stow](https://www.gnu.org/software/stow/):
 
 ```sh
-brew install rcm
+# On macOS
+brew install stow
+
+# On Arch Linux
+sudo pacman -S stow
+
+# On Ubuntu/Debian
+sudo apt install stow
 ```
 
 Install the dotfiles:
 
 ```sh
-env RCRC=$HOME/.dotfiles/rcrc rcup
+cd ~/.dotfiles && ./install.sh
 ```
