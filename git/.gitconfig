@@ -50,8 +50,12 @@
   name = Wouter Willaert
   email = wouter.willaert@gmail.com
   signingkey = C348762F4939A0CE
-[credential]
-  helper = osxkeychain
+[credential "https://github.com"]
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
 [alias]
   aa = add --all
   ap = add --patch
